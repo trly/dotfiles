@@ -29,3 +29,8 @@
 
 [init]
 	defaultBranch = main
+
+[alias]
+	lg = log --color --graph --pretty=format:'%C(yellow)%d%Creset %C(bold blue)%h%Creset %C(green)(%cr)%Creset - %s %C(bold blue)<%an>%Creset' --abbrev-commit --all
+
+  	lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n        %C(white)Hash:%C(reset) %C(cyan)%H%Creset%n        %C(white)Date:%C(reset) %C(cyan)%ai%Creset' --abbrev-commit --stat --all
