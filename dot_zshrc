@@ -70,11 +70,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mise 1password archlinux gh chezmoi)
+plugins=(git mise 1password gh chezmoi)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# 1Password Secret References
+AMP_API_KEY="op://Private/Amp API Key/credential"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
