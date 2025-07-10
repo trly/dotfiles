@@ -1,0 +1,16 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+
+[data]
+    email = {{ $email | quote }}
+
+[git]
+    autoCommit = true
+    autoPush = true
+
+[diff]
+    pager = "diff-so-fancy"
+
+[merge]
+  command = "nvim"
+  args = ["-d", "{{ `{{` }} .Source }}", "{{ `{{` }} .Destination }}", "{{ `{{` }} .Target }}"]
+
