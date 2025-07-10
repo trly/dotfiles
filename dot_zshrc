@@ -70,21 +70,26 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mise 1password gh chezmoi)
+plugins=(git zsh-autosuggestions mise fzf)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# export MANPATH="/usr/local/man:$MANPATH"
+#op  inject --in-file "${HOME}/.dotfiles/secrets.zsh" | while read -r line; do
+  #eval "$line"
+#done
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='nvim'
- fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -101,4 +106,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi=nvim
+alias vim=nvim
+alias cody_short_commit="git diff | cody chat --stdin -m 'generate a short commit message'"
+alias cody_short_origin_commit="git diff origin/main | cody chat --stdin -m 'generate a short commit message'"
+alias cody_commit="git diff | cody chat --stdin -m 'generate a commit message'"
+alias cody_commit_origin="git diff origin/main | cody chat --stdin -m 'generate a commit message'"
+# SG Docker
+alias sgd_up="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml up --remove-orphans -d"
+alias sgd_down="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml down --remove-orphans"
+alias sgd_logs="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml logs -f"
+# SG Docker
+export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts/:$PATH"
+autoload -Uz compinit && compinit
+PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
+source /Users/trly/google-cloud-sdk/completion.zsh.inc
+source /Users/trly/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(mise activate zsh)"
+
+# Created by `pipx` on 2025-03-20 21:14:12
+export PATH="$PATH:/Users/trly/.local/bin"
+alias gitlog="git log --pretty=format:'%h %s <%an>' --abbrev-commit"
