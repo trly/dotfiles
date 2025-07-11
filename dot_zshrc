@@ -107,15 +107,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi=nvim
 alias vim=nvim
-alias cody_short_commit="git diff | cody chat --stdin -m 'generate a short commit message'"
-alias cody_short_origin_commit="git diff origin/main | cody chat --stdin -m 'generate a short commit message'"
-alias cody_commit="git diff | cody chat --stdin -m 'generate a commit message'"
-alias cody_commit_origin="git diff origin/main | cody chat --stdin -m 'generate a commit message'"
-# SG Docker
-alias sgd_up="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml up --remove-orphans -d"
-alias sgd_down="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml down --remove-orphans"
-alias sgd_logs="podman compose -f docker-compose.yaml -f executors/executor.docker-compose.yaml -f docker-compose-override.yaml logs -f"
-# SG Docker
+
+{{- if eq .profile "work" }}
 export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts/:$PATH"
@@ -124,6 +117,7 @@ PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
 source /Users/trly/google-cloud-sdk/completion.zsh.inc
 source /Users/trly/google-cloud-sdk/path.zsh.inc
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{-end }}
 eval "$(mise activate zsh)"
 
 # Created by `pipx` on 2025-03-20 21:14:12
