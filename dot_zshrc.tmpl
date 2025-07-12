@@ -77,9 +77,6 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-#op  inject --in-file "${HOME}/.dotfiles/secrets.zsh" | while read -r line; do
-  #eval "$line"
-#done
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -107,6 +104,8 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 
+export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+
 {{- if eq .profile "work" }}
 export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
@@ -117,6 +116,7 @@ source /Users/trly/google-cloud-sdk/completion.zsh.inc
 source /Users/trly/google-cloud-sdk/path.zsh.inc
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- end }}
+
 eval "$(mise activate zsh)"
 
 # Created by `pipx` on 2025-03-20 21:14:12
