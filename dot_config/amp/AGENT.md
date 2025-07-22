@@ -32,11 +32,15 @@
 - Use meaningful variable and function names
 - Keep functions focused and single-purpose
 
+## Analysis and Design
+- always consult the oracle to review designs prior to implementation
+
 ## Project Management
 - Always use todo_write to plan and track tasks
 - Break down complex tasks into smaller, manageable steps
 - Mark todos as completed immediately when finished
 - Run quality checks (lint, format, typecheck) after code changes
+- If multiple tasks can be worked on in parallel, use multiple sub-agents
 
 ## Communication
 - Be concise and direct in responses
