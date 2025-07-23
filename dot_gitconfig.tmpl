@@ -1,7 +1,12 @@
 [user]
 	email = {{ .email }}
 	name = Travis Lyons
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/7qajz6dnOnIoK9TmJUwt2jMZpQw1qyDocfUr/T6ee
+{{- if eq .profile "work"}}
+  signingkey = {{ opasswordRead "op://Employee/GitHub SSH Key/public key" }}
+{{- end }}
+{{- if eq .profile "home"}}
+  signingkey = {{ opasswordRead "op://Private/SSH Key/public key" }}
+{{- end }}
 
 [core]
 	autocrlf = input
