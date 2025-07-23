@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -107,7 +106,8 @@ alias vim=nvim
 {{- if eq .profile "home"}}
   export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
 {{- end }}
-{{- if eq .profile "home"}}
+
+{{- if eq .profile "work"}}
   export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 {{- end }}
 
