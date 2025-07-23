@@ -104,7 +104,12 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 
-export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+{{- if eq .profile "home"}}
+  export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+{{- end }}
+{{- if eq .profile "home"}}
+  export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
+{{- end }}
 
 {{- if eq .profile "work" }}
 export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
