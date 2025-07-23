@@ -2,10 +2,10 @@
 	email = {{ .email }}
 	name = Travis Lyons
 {{- if eq .profile "work"}}
-  signingkey = {{ opasswordRead "op://Employee/GitHub SSH Key/public key" }}
+  signingkey = {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
 {{- end }}
 {{- if eq .profile "home"}}
-  signingkey = {{ opasswordRead "op://Private/SSH Key/public key" }}
+  signingkey = {{ onepasswordRead "op://Private/SSH Key/public key" }}
 {{- end }}
 
 [core]
