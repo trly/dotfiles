@@ -109,7 +109,7 @@ alias vim=nvim
 
 {{- if eq .profile "work"}}
   export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
-  export SRC_API_TOKEN={{ onepasswordRead "op://Employee/sourcegraph.com API Token/password" }}
+  export SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/sourcegraph.com API Token/password" }}
   export SRC_ENDPOINT={{ onepasswordRead "op://Employee/sourcegraph.com API Token/website" }}
 {{- end }}
 
