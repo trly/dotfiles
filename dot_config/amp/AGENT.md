@@ -1,5 +1,20 @@
 # Global Agent Instructions
 
+## Version Communication
+I use `jj` backed by `git` for all my version control operations. You can find the CLI reference [here](https://jj-vcs.github.io/jj/latest/cli-reference/).
+
+Always run `jj` non-interactively with `--no-pager`.
+Limit the size of log output with `--limit`.
+
+### Common jj commands and workflows:
+
+- **Compare current changes against main**: `jj diff --no-pager --from main`
+- **Compare specific revisions**: `jj diff --no-pager --from <rev1> --to <rev2>`
+- **View commit history**: `jj log --no-pager` (shows mutable revisions only)
+- **View history with diffs**: `jj log -p --no-pager --limit=10`
+- **View commits that modified a file**: `jj log --no-pager --limit=50 <filename>`
+- **Check current status**: `jj status`
+
 ## Development Philosophy
 
 ### Test-Driven Development (TDD)
