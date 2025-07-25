@@ -122,6 +122,25 @@ PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
 source /Users/trly/google-cloud-sdk/completion.zsh.inc
 source /Users/trly/google-cloud-sdk/path.zsh.inc
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+amp-commit() {
+    local temp_file=$(mktemp /tmp/amp-commit-XXXXXX)
+
+    # Generate commit message with Amp
+    amp "Generate a commit message for the currently staged changes" > "$temp_file"
+
+    # Edit in neovim
+    nvim "$temp_file"
+
+    # Check if file has content and commit
+    if [[ -s "$temp_file" ]]; then
+        git commit -F "$temp_file"
+    else
+        echo "Commit message is empty, aborting commit"
+    fi
+
+    # Clean up temp file
+    rm "$temp_file"
+}
 {{- end }}
 
 eval "$(mise activate zsh)"
