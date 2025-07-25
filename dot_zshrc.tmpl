@@ -1,7 +1,11 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git mise fzf zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+{{ if eq .chezmoi.os "darwin" }}
+plugins=(colorize fast-syntax-highlighting fzf git mise ssh zsh-autocomplete zsh-autosuggestions zsh-syntax-highlighting brew macos)
+{{ else }}
+plugins=(colorize fast-syntax-highlighting fzf git mise ssh zsh-autocomplete zsh-autosuggestions zsh-syntax-highlighting)
+{{ end }}
 source $ZSH/oh-my-zsh.sh
 
 #### BEGIN USER CONFIGURATION ####
@@ -23,13 +27,13 @@ alias amp="npx @sourcegraph/amp"
 
 eval "$(mise activate zsh)"
 
-{{- if eq .profile "home"}}
+{{ if eq .profile "home"}}
 #### BEGIN HOME PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
 #### BEGIN HOME PROFILE ####
-{{- end }}
+{{ end }}
 
-{{- if eq .profile "work"}}
+{{ if eq .profile "work"}}
 #### END WORK PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 export SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/password" }}
@@ -44,6 +48,6 @@ source /Users/trly/google-cloud-sdk/completion.zsh.inc
 source /Users/trly/google-cloud-sdk/path.zsh.inc
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #### END WORK PROFILE ####
-{{- end }}
+{{ end }}
 
 #### END USER CONFIGURATION ####
