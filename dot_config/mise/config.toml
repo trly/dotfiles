@@ -1,0 +1,15 @@
+[tools]
+bun = "latest"
+gotestsum = "latest"
+hadolint = "latest"
+helm = "latest"
+java = "temurin-21"
+k9s = "latest"
+kubectl = "latest"
+lazygit = "latest"
+node = "latest"
+pnpm = "latest"
+uv = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = []
