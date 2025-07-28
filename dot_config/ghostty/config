@@ -1,4 +1,4 @@
-theme = dark:GruvboxDarkHard,light:GruvboxLightHard
+theme = GruvboxDarkHard
 
 mouse-hide-while-typing = true
 
