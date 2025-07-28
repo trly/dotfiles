@@ -1,3 +1,5 @@
+theme = dark:GruvboxDarkHard,light:GruvboxLightHard
+
 mouse-hide-while-typing = true
 
 keybind = ctrl+h=goto_split:left
