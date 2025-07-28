@@ -1,16 +1,9 @@
 [tools]
-bun = "latest"
-gotestsum = "latest"
-hadolint = "latest"
-helm = "latest"
-java = "temurin-24"
-k9s = "latest"
-kubectl = "latest"
-lazygit = "latest"
 node = "latest"
 npm = "latest"
-pnpm = "latest"
+python = "latest"
 uv = "latest"
+go = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
