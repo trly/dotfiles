@@ -1,6 +1,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
+export DISABLE_AUTO_UPDATE=true
+
 {{ if eq .chezmoi.os "darwin" }}
 plugins=(colorize fast-syntax-highlighting fzf git mise ssh zsh-autocomplete zsh-autosuggestions zsh-syntax-highlighting brew macos)
 {{ else }}
@@ -11,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 #### BEGIN USER CONFIGURATION ####
 alias vi=nvim
 alias vim=nvim
+
 
 if command -v atuin &> /dev/null; then
   eval "$(atuin init zsh)"
