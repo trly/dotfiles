@@ -1,5 +1,4 @@
 theme = GruvboxDarkHard
-font-family = "Hack Nerd Font Mono"
 font-size=14
 
 mouse-hide-while-typing = true
