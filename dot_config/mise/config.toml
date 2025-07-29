@@ -4,6 +4,8 @@ npm = "latest"
 python = "latest"
 uv = "latest"
 go = "latest"
+pnpm = "latest"
+bun = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
