@@ -15,3 +15,7 @@ dot_Brewfile
 {{ if ne .chezmoi.os "windows" -}}
 dot_config/windows_terminal
 {{- end }}
+
+# .oh-my-zsh
+.oh-my-zsh/cache
+
