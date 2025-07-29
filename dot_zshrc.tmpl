@@ -9,35 +9,8 @@ plugins=(colorize fast-syntax-highlighting fzf git mise ssh zsh-autocomplete zsh
 source $ZSH/oh-my-zsh.sh
 
 #### BEGIN USER CONFIGURATION ####
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vi'
- else
-   export EDITOR='nvim'
- fi
-
 alias vi=nvim
 alias vim=nvim
-alias ls='eza -lh --group-directories-first --icons=auto'
-alias lsa='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git'
-alias lta='lt -a'
-alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
-alias cd="zd"
-zd() {
-  if [ $# -eq 0 ]; then
-    builtin cd ~ && return
-  elif [ -d "$1" ]; then
-    builtin cd "$1"
-  else
-    z "$@" && printf " \U000F17A9 " && pwd || echo "Error: Directory not found"
-  fi
-}
 
 eval "$(mise activate zsh)"
 eval "$(atuin init zsh)"
