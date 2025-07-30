@@ -88,6 +88,8 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #### END WORK PROFILE ####
 {{ end }}
 
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 #### END USER CONFIGURATION ####
