@@ -1,6 +1,4 @@
-# Appearance
-theme = light:GruvboxLightHard,dark:GruvboxDarkHard
-font-family="Fira Code"
+# Appearance theme = light:GruvboxLightHard,dark:GruvboxDarkHard font-family="Fira Code"
 font-size=14
 mouse-hide-while-typing = true
 
