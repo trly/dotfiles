@@ -3,6 +3,7 @@ font-size=14
 mouse-hide-while-typing=true
 background-opacity=.85
 background-blur=true
+unfocused-split-opacity=.5
 
 # Quick Terminal
 quick-terminal-position=top
