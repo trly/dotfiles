@@ -3,7 +3,7 @@ font-size=14
 mouse-hide-while-typing=true
 background-opacity=.85
 background-blur=true
-unfocused-split-opacity=.3
+maximize
 
 # Quick Terminal
 quick-terminal-position=top
@@ -22,4 +22,5 @@ keybind = ctrl+a>f=toggle_split_zoom
 
 # State management
 window-save-state = always
+working-directory = ~/src
 
