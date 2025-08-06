@@ -1,22 +1,24 @@
+# Appearance
 theme = light:GruvboxLightHard,dark:GruvboxDarkHard
 font-family="Fira Code"
 font-size=14
-
 mouse-hide-while-typing = true
 
+# Quick Terminal
+quick-terminal-position=top
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# Split Management
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
-
 keybind = ctrl+a>h=new_split:left
 keybind = ctrl+a>j=new_split:down
 keybind = ctrl+a>k=new_split:up
 keybind = ctrl+a>l=new_split:right
 keybind = ctrl+a>f=toggle_split_zoom
 
-keybind = ctrl+a>n=next_tab
-keybind = ctrl+a>p=previous_tab
-
+# State management
 window-save-state = always
 
