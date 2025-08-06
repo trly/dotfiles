@@ -1,4 +1,6 @@
-# Appearance theme = light:GruvboxLightHard,dark:GruvboxDarkHard font-family="Fira Code"
+# Appearance
+theme = light:GruvboxLightHard,dark:GruvboxDarkHard
+font-family="Hack Nerd Font Mono"
 font-size=14
 mouse-hide-while-typing=true
 background-opacity=.85
