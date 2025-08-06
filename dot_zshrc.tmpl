@@ -63,18 +63,12 @@ alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias amp="npx @sourcegraph/amp@latest"
 export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 export SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/password" }}
 export SRC_ENDPOINT={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/website" }}
-
 export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts/:$PATH"
-autoload -Uz compinit && compinit
-PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
-source /Users/trly/google-cloud-sdk/completion.zsh.inc
-source /Users/trly/google-cloud-sdk/path.zsh.inc
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #### END WORK PROFILE ####
 {{ end }}
 
