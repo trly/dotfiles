@@ -2,7 +2,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export DISABLE_AUTO_UPDATE=true
 ZSH_THEME=""
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 plugins=(
   colorize
   fast-syntax-highlighting
@@ -28,7 +28,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
-{{ end }}
+{{- end }}
 source $ZSH/oh-my-zsh.sh
 
 #### BEGIN USER CONFIGURATION ####
@@ -43,20 +43,19 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
 
-{{ if eq .profile "home"}}
+{{- if eq .profile "home"}}
 #### BEGIN HOME PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
-{{ if eq .chezmoi.osRelease.id "arch"}}
+{{- if eq .chezmoi.osRelease.id "arch"}}
 source ~/.local/share/omarchy/default/bash/aliases
 source ~/.local/share/omarchy/default/bash/envs
 source ~/.local/share/omarchy/default/bash/envs
 source ~/.local/share/omarchy/default/bash/functions
-{{ end }}
+{{- end }}
 #### END HOME PROFILE ####
-{{ end }}
+{{- end }}
 
-
-{{ if eq .profile "work"}}
+{{- if eq .profile "work"}}
 #### BEGIN WORK PROFILE ####
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
@@ -70,10 +69,10 @@ export SRC_ENDPOINT={{ onepasswordRead "op://Employee/demo.sourcegraph.com API T
 export SRC_BATCH_TMP_DIR=~/.batch_change_tmp
 export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts/:$PATH"
 #### END WORK PROFILE ####
-{{ end }}
+{{- end }}
 
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
-
 #### END USER CONFIGURATION ####
+
