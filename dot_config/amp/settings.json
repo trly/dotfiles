@@ -10,5 +10,17 @@
         "--isolated"
       ]
     }
-  }
+  },
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "matches": {
+        "cmd": "git clone https://github.com/oven-sh/bun.git"
+      },
+      "action": "allow"
+    }
+  ],
+  "amp.commands.allowlist": [
+    "git"
+  ]
 }
