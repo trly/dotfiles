@@ -7,7 +7,7 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: CaskaydiaMono Nerd Font;
+  font-family: Jetbrains Mono Nerd;
   font-size: 12px;
 }
 
@@ -26,10 +26,6 @@
   min-width: 9px;
 }
 
-#workspaces button.empty {
-  opacity: 0.5;
-}
-
 #tray,
 #cpu,
 #battery,
@@ -37,13 +33,13 @@
 #bluetooth,
 #pulseaudio,
 #clock,
-#custom-omarchy {
+#custom-power-menu {
   min-width: 12px;
   margin: 0 7.5px;
 }
 
 #custom-expand-icon {
-  margin-right: 7px;
+  margin-right: 12px;
 }
 
 tooltip {
