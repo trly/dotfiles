@@ -35,6 +35,7 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
+alias amp="npx @sourcegraph/amp@latest"
 
 if command -v atuin &> /dev/null; then
   eval "$(atuin init zsh)"
@@ -65,7 +66,6 @@ alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
-alias amp="npx @sourcegraph/amp@latest"
 export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 export SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/password" }}
 export SRC_ENDPOINT={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/website" }}
