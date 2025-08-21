@@ -9,7 +9,7 @@ maximize
 
 # Quick Terminal
 quick-terminal-position=top
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:alt+grave_accent=toggle_quick_terminal
 
 # Split Management
 keybind = ctrl+h=goto_split:left
