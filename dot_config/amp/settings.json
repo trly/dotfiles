@@ -9,27 +9,6 @@
         "--headless",
         "--isolated"
       ]
-    },
-    "Astro docs": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.docs.astro.build/mcp"
-      ]
     }
-  },
-  "amp.permissions": [
-    {
-      "tool": "Bash",
-      "matches": {
-        "cmd": "git clone https://github.com/oven-sh/bun.git"
-      },
-      "action": "allow"
-    }
-  ],
-  "amp.commands.allowlist": [
-    "git"
-  ]
+  }
 }
