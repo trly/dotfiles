@@ -1,5 +1,5 @@
 # Appearance
-theme = light:GruvboxLightHard,dark:GruvboxDarkHard
+theme = light:Gruvbox Light Hard,dark:Gruvbox Dark Hard
 font-family="Hack Nerd Font Mono"
 font-size=14
 mouse-hide-while-typing=true
