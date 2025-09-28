@@ -11,6 +11,9 @@ This file contains personal preferences for working with AI agents
 - Use red-green-refactor cycle: write failing test → make it pass → refactor
 - Tests should serve as documentation and specification of behavior
 - Validate feature designs through tests before implementation
+- **No "unit tests"** - this term is not helpful. User facing tests should verify expected behavior, treating implementation as a black box
+- Test through the public API exclusively - internals should be invisible to tests
+- No 1:1 mapping between test files and implementation files
 
 ### Oracle Consultation
 
@@ -22,7 +25,7 @@ This file contains personal preferences for working with AI agents
 
 ## Unix Philosophy Guidelines
 
-Follow these principles in all code and system design:
+Follow these principles in all code and system design
 
 ### Rule of Modularity
 
@@ -87,30 +90,69 @@ Follow these principles in all code and system design:
 - Choose the right tool for the job
 - Keep systems open and extensible
 
+### Rule of Composition
+
+- Design programs to be connected with other programs
+- Write programs as simple filters that process text streams
+- Favor composable programs that are independent
+- Use simple, textual, stream-oriented formats
+
+### Rule of Parsimony
+
+- Write a big program only when clearly necessary
+- Avoid large volume of code and internal complexity
+- Large programs hurt maintainability
+- Question overinvestment in failed approaches
+
+### Rule of Transparency
+
+- Design for visibility to make inspection and debugging easier
+- Software should be transparent and discoverable
+- Make it easy to understand what the program is doing
+- Design debugging options from the beginning
+
+### Rule of Robustness
+
+- Robustness is the child of transparency and simplicity
+- Design to perform well under unexpected conditions
+- Make internals easy for humans to reason about
+- Design tolerance for unusual or bulky inputs
+
+### Rule of Representation
+
+- Fold knowledge into data, so program logic can be stupid and robust
+- Data is more tractable than program logic
+- Choose data structure complexity over code complexity
+- Actively shift complexity from code to data
+
+### Rule of Economy
+
+- Programmer time is expensive; conserve it over machine time
+- Write applications in higher-level languages when possible
+- Teach machines to do more low-level programming work
+- Prioritize developer productivity
+
+### Rule of Generation
+
+- Avoid hand-hacking; write programs to write programs
+- Generated code is cheaper and more reliable than hand-hacked
+- Target repetitive, mind-numbing code for generation
+- Automate to reduce delays and errors
+
+### Rule of Extensibility
+
+- Design for the future, because it will be here sooner than you think
+- Never assume you have the final answer
+- Leave room for data formats and code to grow
+- Organize code for future developers to extend without rebuilding
+
 ## Agent Collaboration Workflow
-
-### Task Lifecycle
-
-1. **Define task** - Clearly describe requirements and acceptance criteria
-2. **Write tests first** - Create failing tests that specify expected behavior  
-3. **Consult Oracle** - For complex features or architectural decisions
-4. **Implement** - Use TDD cycle to build functionality
-5. **Validate** - Ensure all tests pass and quality gates are met
 
 ### Quality Gates
 
-- All tests must pass in CI/CD
 - No reduction in test coverage
-- Oracle approval required for MEDIUM+ complexity changes
 - Security review for authentication, authorization, or data handling
 - Style and lint checks must pass
-
-### Context & Communication
-
-- Always provide full file paths when referencing code
-- Include relevant test files and documentation
-- Ask clarifying questions rather than making assumptions
-- Reveal reasoning and thought process for review
 
 ## Security Guidelines
 
@@ -118,13 +160,3 @@ Follow these principles in all code and system design:
 - Sanitize prompts before sending to external services
 - Use environment variables and secure storage for sensitive data
 - Flag any code that handles authentication or authorization for review
-
-## Implementation Guidelines
-
-1. **Start with tests** - Define behavior through tests before writing implementation
-2. **Consult Oracle** - Get expert guidance on complex decisions
-3. **Keep it simple** - Favor simple, clear solutions
-4. **Separate concerns** - Maintain clear boundaries between components  
-5. **Fail fast** - Make errors obvious and actionable
-6. **Measure first** - Profile before optimizing
-7. **Stay modular** - Design for composability and reuse
