@@ -7,7 +7,10 @@ return {
       "kotlin-language-server",
       "svelte-language-server",
       "marksman",
+      "markdownlint-cli2",
+      "markdown-toc",
       "ltex-ls",
+      "prettier",
     },
   },
 }
