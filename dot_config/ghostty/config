@@ -1,6 +1,6 @@
 # Appearance
 theme = light:Gruvbox Light Hard,dark:Gruvbox Dark Hard
-font-family="Hack Nerd Font Mono"
+font-family="JetBrainsMono Nerd Font Mono"
 font-size=14
 mouse-hide-while-typing=true
 background-opacity=.85
