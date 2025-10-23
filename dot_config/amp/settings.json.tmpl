@@ -5,11 +5,13 @@
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
     },
+{{- if eq .profile "work"}}
     "sourcegraph": {
       "url": "https://demo.sourcegraph.com/.api/mcp/v1",
       "headers": {
-        "Authorization": "token {{ onepasswordRead "op://25gdp5ksdjzdlnvv3k4ucyukdy/password" }}"
+        "Authorization": "token {{ onepasswordRead "op://Employee/25gdp5ksdjzdlnvv3k4ucyukdy/password" }}"
       }
     }
+{{- end }}
   }
 }
