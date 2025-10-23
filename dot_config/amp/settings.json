@@ -1,6 +1,5 @@
 {
   "amp.dangerouslyAllowAll": true,
-  "amp.experimental.librarian": true,
   "amp.mcpServers": {
     "playwright": {
       "command": "npx",
