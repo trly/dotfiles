@@ -4,12 +4,13 @@
   "amp.mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest",
-        "--headless",
-        "--isolated"
-      ]
+      "args": ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
+    },
+    "sourcegraph": {
+      "url": "https://demo.sourcegraph.com/.api/mcp/v1",
+      "headers": {
+        "Authorization": "token {{ onepasswordRead 'op://Employee/demo.sourcegraph.com API Token/password' }}"
+      }
     }
   }
 }
