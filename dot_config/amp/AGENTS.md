@@ -9,6 +9,7 @@ This file contains personal preferences for working with AI agents
 - Tests should serve as documentation and specification of behavior
 - Test through the public API exclusively - internals should be invisible to tests
 - No 1:1 mapping between test files and implementation files
+- if a language supports immutability, always make a variable constant unless it can't be
 
 ## Unix Philosophy Guidelines
 
