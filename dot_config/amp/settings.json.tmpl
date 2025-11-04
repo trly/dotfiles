@@ -1,5 +1,8 @@
 {
   "amp.dangerouslyAllowAll": true,
+{{- if eq .profile "work" }}
+  "amp.experimental.planMode": true,
+{{- end }}
   "amp.mcpServers": {
     "playwright": {
       "command": "npx",
