@@ -1,0 +1,4 @@
+export EDITOR=nvim
+export AMP_TOOLBOX="/Users/trly/.config/amp/tools"
+export PATH="$HOME/.local/bin:$PATH"
+
