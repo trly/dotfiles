@@ -53,6 +53,7 @@ fi
 {{- if eq .profile "home"}}
 #### BEGIN HOME PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+export SSH_AUTH_SOCK=~/.1password/agent.sock
 {{- if eq .chezmoi.osRelease.id "arch"}}
 source $HOME/.local/share/omarchy/default/bash/aliases
 source $HOME/.local/share/omarchy/default/bash/envs
