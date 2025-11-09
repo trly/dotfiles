@@ -50,6 +50,26 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
+if command -v pwgen &> /dev/null; then
+  function podman-secret() {
+    local length=${1:-32}
+    local name=$2
+    local replace=${3:-false}
+    
+    if [[ -z "$name" ]]; then
+      echo "Usage: podman-secret <length> <name> [replace]"
+      return 1
+    fi
+    
+    local replace_flag=""
+    if [[ "$replace" == "true" ]]; then
+      replace_flag="--replace"
+    fi
+    
+    echo -n $(pwgen -1 "$length") | podman secret create "$name" $replace_flag -
+  }
+fi
+
 {{- if eq .profile "home"}}
 #### BEGIN HOME PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
