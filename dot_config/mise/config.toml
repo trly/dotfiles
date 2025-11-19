@@ -4,5 +4,7 @@ idiomatic_version_file_enable_tools = ["ruby"]
 [settings.ruby]
 
 [tools]
-go = "latest"
+pnpm = "latest"
+python = "latest"
+rust = "latest"
 

@@ -1,5 +1,4 @@
 [user]
-	email = {{ .email }}
 	name = Travis Lyons
 {{- if eq .profile "work"}}
   signingkey = {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
@@ -7,6 +6,9 @@
 {{- if eq .profile "home"}}
   signingkey = {{ onepasswordRead "op://Private/SSH Key/public key" }}
 {{- end }}
+
+[includeIf "gitdir:~/src/github.com/trly/**"]
+    path = ~/.gitconfig-personal
 
 [core]
 	autocrlf = input
