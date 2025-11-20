@@ -107,9 +107,5 @@ if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
 
-# Default git email (used when not overridden by conditional config)
-export GIT_EMAIL="{{ .email }}"
-export EMAIL="$GIT_EMAIL"
-
 #### END USER CONFIGURATION ####
 
