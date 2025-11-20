@@ -1,4 +1,5 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $email.primary := promptStringOnce . "email.primary" "Primary e-Mail address" -}}
+{{- $email.secondary := promptStringOnce . "email.secondary" "Secondary e-Mail address" -}}
 {{- $profileChoices := list "work" "personal" -}}
 {{- $profile := promptChoiceOnce . "profile" "What configuration profile should be used" $profileChoices -}}
 
