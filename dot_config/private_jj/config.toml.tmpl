@@ -2,14 +2,14 @@
 
 [user]
 name = "Travis Lyons"
-email = "{{ .email.primary }}"
+email = "{{ .email }}"
 
 {{- if eq .profile "work"}}
 [[--scope]]
 --when.repositories = ["~/src/github.com/trly"]
 
 [--scope.user]
-email = "{{ .email.secondary }}"
+email = "{{ .email }}"
 {{- end }}
 
 [ui]
