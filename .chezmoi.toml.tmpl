@@ -1,10 +1,14 @@
-{{- $email := promptStringOnce . "email" "e-Mail address" -}}
+{{- $emailPrimary := promptStringOnce . "emailPrimary" "primary e-mail address" -}}
+{{- $emailSecondary := promptStringOnce . "emailSecondary" "secondary e-mail address" -}}
 {{- $profileChoices := list "work" "personal" -}}
 {{- $profile := promptChoiceOnce . "profile" "What configuration profile should be used" $profileChoices -}}
 
 [data]
-    email = {{ $email | quote }}
     profile = {{ $profile | quote }}
+
+[data.email]
+    primary = {{ $emailPrimary | quote }}
+    secondary = {{ $emailSecondary | quote }}
 
 [edit]
     command = "nvim"
