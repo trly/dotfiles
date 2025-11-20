@@ -7,9 +7,6 @@
   signingkey = {{ onepasswordRead "op://Private/SSH Key/public key" }}
 {{- end }}
 
-[includeIf "gitdir:~/src/github.com/trly/**"]
-    path = ~/.gitconfig-personal
-
 [core]
 	autocrlf = input
 	pager = delta
