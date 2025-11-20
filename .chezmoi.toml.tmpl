@@ -1,6 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 {{- $profileChoices := list "work" "personal" -}}
-{{- $profile := promptChoiceOnce . "profile" "What configuration profile should be used" -}}
+{{- $profile := promptChoiceOnce . "profile" "What configuration profile should be used" $profileChoices -}}
 
 [data]
     email = {{ $email | quote }}

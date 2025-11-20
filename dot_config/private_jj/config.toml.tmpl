@@ -4,6 +4,14 @@
 name = "Travis Lyons"
 email = "{{ .email.primary }}"
 
+{{- if eq .profile "work"}}
+[[--scope]]
+--when.repositories = ["~/src/github.com/trly"]
+
+[--scope.user]
+email = "{{ .email.secondary }}"
+{{- end }}
+
 [ui]
 pager = ["sh", "-c", "diff-so-fancy | less -RFX"]
 editor = "nvim"
