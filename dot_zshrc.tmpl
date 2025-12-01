@@ -38,6 +38,11 @@ source $ZSH/oh-my-zsh.sh
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 export PATH="$HOME/.local/bin:$PATH"
 export AMP_TOOLBOX="/Users/trly/.config/amp/tools"
@@ -87,11 +92,6 @@ export PATH=".local/share/JetBrains/Toolbox/scripts:$PATH"
 
 {{- if eq .profile "work"}}
 #### BEGIN WORK PROFILE ####
-alias ls='eza -lh --group-directories-first --icons=auto'
-alias lsa='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git'
-alias lta='lt -a'
-alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 export ANTHROPIC_API_KEY={{ onepasswordRead "op://Employee/y5mvlflkapp7sqkm5brdfryvie/credential"}}
 export SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/password" }}
