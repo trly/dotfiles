@@ -1,5 +1,6 @@
 [user]
 	name = Travis Lyons
+  email = {{ .email.primary }}
 {{- if eq .profile "work"}}
   signingkey = {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
 {{- end }}
