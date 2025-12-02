@@ -9,6 +9,7 @@ plugins=(
   fast-syntax-highlighting
   fzf
   git
+  gh
   mise
   ssh
   zsh-autocomplete
@@ -43,6 +44,13 @@ alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
 
 export PATH="$HOME/.local/bin:$PATH"
 export AMP_TOOLBOX="/Users/trly/.config/amp/tools"
@@ -98,10 +106,6 @@ transcode-video-4K() {
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 {{- if eq .chezmoi.osRelease.id "arch"}}
-source $HOME/.local/share/omarchy/default/bash/aliases
-source $HOME/.local/share/omarchy/default/bash/envs
-source $HOME/.local/share/omarchy/default/bash/envs
-source $HOME/.local/share/omarchy/default/bash/functions
 
 export PATH=".local/share/JetBrains/Toolbox/scripts:$PATH"
 {{- end }}
