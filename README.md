@@ -39,8 +39,8 @@ brew install diff-so-fancy neovim mise fzf zsh-autosuggestions zsh-syntax-highli
    ```
 
 3. **You'll be prompted for**:
-   - Email address (used in Git configuration)
-   - Profile (`work` or `personal`)
+    - Email address (used in Git configuration)
+    - Profile (`work` or `home`)
 
 4. **Authenticate 1Password CLI**:
    ```bash
@@ -58,7 +58,7 @@ brew install diff-so-fancy neovim mise fzf zsh-autosuggestions zsh-syntax-highli
 
 ```bash
 export CHEZMOI_EMAIL="your@email.com"
-export CHEZMOI_PROFILE="personal"
+export CHEZMOI_PROFILE="home"
 chezmoi init --apply https://github.com/trly/dotfiles.git
 ```
 

@@ -19,7 +19,7 @@
 - `.chezmoi.toml.tmpl` contains prompts for email/profile variables
 - Templates use `{{ .variable }}` syntax for substitution
 - Git auto-commit/push enabled in chezmoi config
-- Profile-specific config (work vs personal) using `{{ if eq .profile "work" }}`
+- Profile-specific config (work vs home) using `{{ if eq .profile "work" }}`
 
 ## Style Guidelines
 - Use template variables for personal data (email, API keys)
