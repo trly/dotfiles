@@ -1,5 +1,5 @@
 # Appearance
-theme = light:Catppuccin Latte,dark:Cattppuccin Frappe
+theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 font-family="MonaspiceKr Nerd Font Mono"
 font-size=14
 mouse-hide-while-typing=true
