@@ -3,7 +3,7 @@ theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 font-family="MonaspiceKr Nerd Font Mono"
 font-size=14
 mouse-hide-while-typing=true
-background-opacity=.85
+background-opacity=.95
 background-blur=true
 maximize
 
