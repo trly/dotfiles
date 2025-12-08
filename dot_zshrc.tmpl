@@ -1,6 +1,10 @@
+#### BEGIN USER CONFIGURATION ####
 export ZSH="$HOME/.oh-my-zsh"
+
 export DISABLE_AUTO_UPDATE=true
+
 ZSH_THEME=""
+
 EDITOR=nvim
 
 {{- if eq .chezmoi.os "darwin" }}
@@ -33,9 +37,13 @@ plugins=(
   direnv
 )
 {{- end }}
+
 source $ZSH/oh-my-zsh.sh
 
-#### BEGIN USER CONFIGURATION ####
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
@@ -106,7 +114,6 @@ transcode-video-4K() {
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 {{- if eq .chezmoi.osRelease.id "arch"}}
-
 export PATH=".local/share/JetBrains/Toolbox/scripts:$PATH"
 {{- end }}
 #### END HOME PROFILE ####
@@ -124,9 +131,5 @@ export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/
 export GITHUB_TOKEN={{ onepasswordRead "op://Employee/tic2vdlxonqobta22kzv6c4f24/credential" }}
 #### END WORK PROFILE ####
 {{- end }}
-
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
 #### END USER CONFIGURATION ####
 
