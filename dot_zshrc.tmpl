@@ -141,6 +141,10 @@ export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts/:$PATH"
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 export GITHUB_TOKEN={{ onepasswordRead "op://Employee/tic2vdlxonqobta22kzv6c4f24/credential" }}
 
+sg_results_extract_repos() {
+  jq -r '[.Results[].repository.name] | unique | .[] | sub("^github.com/"; "")'
+}
+
 dotcom_search() {
   SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
   SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
@@ -153,10 +157,9 @@ dotcom_search_json() {
   src search -json "$@"
 }
 
-dotcom_results_get_repos() {
-  jq -r '[.Results[].repository.name] | unique | .[] | sub("^github.com/"; "")'
+dotcom_get_repos() {
+  dotcom_search_json "$@" | sg_results_extract_repos
 }
-
 #### END WORK PROFILE ####
 {{- end }}
 #### END USER CONFIGURATION ####
