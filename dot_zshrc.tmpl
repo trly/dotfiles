@@ -140,7 +140,13 @@ export SRC_BATCH_TMP_DIR=$HOME/.batch_change_tmp
 export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts/:$PATH"
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 export GITHUB_TOKEN={{ onepasswordRead "op://Employee/tic2vdlxonqobta22kzv6c4f24/credential" }}
+
+dotcom_search() {
+  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/password" }} \
+  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
+  src search -- "$@"
+}
+
 #### END WORK PROFILE ####
 {{- end }}
 #### END USER CONFIGURATION ####
-
