@@ -153,6 +153,10 @@ dotcom_search_json() {
   src search -json "$@"
 }
 
+dotcom_results_get_repos() {
+  jq -r '[.Results[].repository.name] | unique | .[] | sub("^github.com/"; "")'
+}
+
 #### END WORK PROFILE ####
 {{- end }}
 #### END USER CONFIGURATION ####
