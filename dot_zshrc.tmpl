@@ -147,6 +147,12 @@ dotcom_search() {
   src search -- "$@"
 }
 
+dotcom_search_json() {
+  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
+  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
+  src search -json "$@"
+}
+
 #### END WORK PROFILE ####
 {{- end }}
 #### END USER CONFIGURATION ####
