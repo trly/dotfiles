@@ -15,3 +15,18 @@ keybind = global:alt+grave_accent=toggle_quick_terminal
 window-save-state = always
 
 keybind = shift+enter=text:\x1b\r
+
+# Split management
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+l=new_split:right
+
+# Navigate between splits
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+l=goto_split:right
+
+# Resize splits
+keybind = ctrl+equal=equalize_splits
