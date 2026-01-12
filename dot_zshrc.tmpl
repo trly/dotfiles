@@ -7,6 +7,10 @@ export SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
+source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=($ZSH/plugins/zsh-completions/src $fpath)
+
 if command -v atuin &> /dev/null; then
   eval "$(atuin init zsh)"
 fi
