@@ -1,42 +1,15 @@
 #### BEGIN USER CONFIGURATION ####
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.zsh"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export HISTFILE=$ZSH/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 
-export DISABLE_AUTO_UPDATE=true
-
-ZSH_THEME=""
-
-{{- if eq .chezmoi.os "darwin" }}
-plugins=(
-  colorize
-  fast-syntax-highlighting
-  fzf
-  gh
-  mise
-  ssh
-  zsh-autocomplete
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  direnv
-  brew
-  macos
-)
-{{ else }}
-plugins=(
-  colorize
-  fast-syntax-highlighting
-  fzf
-  mise
-  ssh
-  zsh-autocomplete
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  direnv
-)
-{{- end }}
-
-source $ZSH/oh-my-zsh.sh
-
-export PATH="$HOME/.local/bin:$PATH"
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
@@ -60,14 +33,6 @@ fi
 if command -v eza &> /dev/null; then
   alias ls='eza -lh --group-directories-first --icons=auto'
   alias lt='eza --tree --level=2 --long --icons --git'
-fi
-
-if command -v amp &> /dev/null; then
-  export AMP_TOOLBOX="/Users/trly/.config/amp/tools"
-fi
-
-if command -v atuin &> /dev/null; then
-  eval "$(atuin init zsh)"
 fi
 
 if command -v mise &> /dev/null; then
