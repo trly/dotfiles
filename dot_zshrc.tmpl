@@ -14,7 +14,7 @@ autoload -U compinit; compinit
 source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-bindkey '$' autosuggest-accept
+bindkey '\t\t' autosuggest-accept
 
 if command -v atuin &> /dev/null; then
   eval "$(atuin init zsh)"
