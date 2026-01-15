@@ -3,8 +3,3 @@ type = "git-repo"
 url = "https://github.com/mattmc3/antidote.git"
 clone.args = ["--depth", "1", "--single-branch"]
 
-[".local/share/eza-themes"]
-type = "git-repo"
-url = "https://github.com/eza-community/eza-themes.git"
-clone.args = ["--depth", "1", "--single-branch"]
-
