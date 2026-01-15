@@ -4,9 +4,9 @@ mattmc3/ez-compinit
 
 ohmyzsh/ohmyzsh path:plugins/direnv
 ohmyzsh/ohmyzsh path:plugins/eza
-ohmyzsh/ohmyzsh path:plugins/fzf
-ohmyzsh/ohmyzsh path:plugins/mise
 ohmyzsh/ohmyzsh path:plugins/starship
+
+wintermi/zsh-mise
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
