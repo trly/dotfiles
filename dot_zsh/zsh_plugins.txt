@@ -1,0 +1,9 @@
+mattmc3/ez-compinit
+
+ohmyzsh/ohmyzsh path:plugins/eza
+ohmyzsh/ohmyzsh path:plugins/starship
+
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+
