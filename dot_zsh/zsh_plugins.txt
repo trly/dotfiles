@@ -1,8 +1,12 @@
+marlonrichert/zsh-autocomplete
+
 mattmc3/ez-compinit
 
 ohmyzsh/ohmyzsh path:plugins/starship
 
 wintermi/zsh-mise
+
+zdharma-continuum/fast-syntax-highlighting
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
