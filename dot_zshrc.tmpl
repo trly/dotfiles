@@ -7,6 +7,9 @@ export SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
+zle -N menu-search
+zle -N recent-paths
+
 source $ZSH/antidote/antidote.zsh
 antidote load $ZSH/zsh_plugins.txt
 
