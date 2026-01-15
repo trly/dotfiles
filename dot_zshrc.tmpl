@@ -1,14 +1,14 @@
 #### BEGIN USER CONFIGURATION ####
 export ZSH="$HOME/.zsh"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export HISTFILE=$ZSH/.zsh_history
+export HISTFILE=$ZSH/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
 source $ZSH/antidote/antidote.zsh
-antidote load
+antidote load $ZSH/zsh_plugins.txt
 
 bindkey '\t\t' autosuggest-accept
 
