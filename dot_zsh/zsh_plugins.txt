@@ -2,6 +2,7 @@ mattmc3/ez-compinit
 
 ohmyzsh/ohmyzsh path:plugins/direnv
 ohmyzsh/ohmyzsh path:plugins/eza
+ohmyzsh/ohmyzsh path:plugins/fzf
 ohmyzsh/ohmyzsh path:plugins/starship
 
 zsh-users/zsh-syntax-highlighting
