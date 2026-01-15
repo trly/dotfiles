@@ -2,7 +2,8 @@ fdellwing/zsh-bat
 
 mattmc3/ez-compinit
 
-wintermi/zsh-starship
+ohmyzsh/ohmyzsh path:plugins/starship
+
 wintermi/zsh-mise
 
 zsh-users/zsh-syntax-highlighting
