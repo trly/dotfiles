@@ -35,11 +35,6 @@ if command -v fzf &> /dev/null && command -v bat &> /dev/null; then
   alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 fi
 
-if command -v eza &> /dev/null; then
-  alias ls='eza -lh --group-directories-first --icons=auto'
-  alias lt='eza --tree --level=2 --long --icons --git'
-fi
-
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
