@@ -70,4 +70,8 @@ dotcom_get_repos() {
 
 #### END WORK PROFILE ####
 {{- end }}
+
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 #### END USER CONFIGURATION ####
