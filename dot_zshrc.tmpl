@@ -12,14 +12,6 @@ antidote load $ZSH/zsh_plugins.txt
 
 bindkey '\t\t' autosuggest-accept
 
-if command -v atuin &> /dev/null; then
-  eval "$(atuin init zsh)"
-fi
-
-if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
-fi
-
 if command -v nvim &> /dev/null; then
   export EDITOR="nvim"
   export VISUAL="nvim"
@@ -27,12 +19,12 @@ if command -v nvim &> /dev/null; then
   alias vim=nvim
 fi
 
-if command -v lazygit &> /dev/null; then
-  alias lg=lazygit
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
 fi
 
-if command -v mise &> /dev/null; then
-  eval "$(mise activate zsh)"
+if command -v lazygit &> /dev/null; then
+  alias lg=lazygit
 fi
 
 if command -v pwgen &> /dev/null; then
