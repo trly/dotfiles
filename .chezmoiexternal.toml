@@ -3,3 +3,22 @@ type = "git-repo"
 url = "https://github.com/mattmc3/antidote.git"
 clone.args = ["--depth", "1", "--single-branch"]
 
+[".zsh/plugins/fast-syntax-highlighting"]
+type = "git-repo"
+url = "https://github.com/zdharma-zmirror/fast-syntax-highlighting.git"
+clone.args = ["--depth", "1", "--single-branch", "-b", "master"]
+
+[".zsh/plugins/zsh-autosuggestions"]
+type = "git-repo"
+url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+clone.args = ["--depth", "1", "--single-branch", "--branch", "v0.7.1"]
+
+[".zsh/plugins/zsh-completions"]
+type = "git-repo"
+url = "https://github.com/zsh-users/zsh-completions.git"
+clone.args = ["--depth", "1", "--single-branch", "--branch", "0.35.0"]
+
+[".zsh/plugins/zsh-bat"]
+type = "git-repo"
+url = "https://github.com/fdellwing/zsh-bat.git"
+clone.args = ["--depth", "1", "--single-branch"]
