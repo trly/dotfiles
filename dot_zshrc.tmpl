@@ -31,10 +31,6 @@ if command -v lazygit &> /dev/null; then
   alias lg=lazygit
 fi
 
-if command -v fzf &> /dev/null && command -v bat &> /dev/null; then
-  alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
-fi
-
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
