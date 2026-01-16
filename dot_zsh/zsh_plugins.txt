@@ -1,13 +1,15 @@
 embeddedpenguin/sanekeybinds
 hlissner/zsh-autopair
-marlonrichert/zsh-autocomplete
 mattmc3/ez-compinit
+ohmyzsh/ohmyzsh path:plugins/brew
+ohmyzsh/ohmyzsh path:plugins/eza
 ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/podman
+ohmyzsh/ohmyzsh path:plugins/pre-commit
 ohmyzsh/ohmyzsh path:plugins/starship
 sunlei/zsh-ssh
 wintermi/zsh-mise
 zdharma-continuum/fast-syntax-highlighting
 zpm-zsh/clipboard
-zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-
+Aloxaf/fzf-tab
