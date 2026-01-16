@@ -13,6 +13,8 @@ zle -N recent-paths
 source $ZSH/antidote/antidote.zsh
 antidote load $ZSH/zsh_plugins.txt
 
+autoload -Uz compinit && compinit
+
 bindkey '\t\t' autosuggest-accept
 
 if command -v nvim &> /dev/null; then
