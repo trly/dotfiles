@@ -65,7 +65,7 @@
 [commit]
   gpgsign = true
 {{- if eq .profile "work" }}
-  includeIf "gitdir:~/src/github.com/trly"
+[includeIf "gitdir:~/src/github.com/trly"]
   path = ~/.gitconfig-personal
 {{- end }}
 
