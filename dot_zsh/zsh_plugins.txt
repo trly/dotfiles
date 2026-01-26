@@ -1,4 +1,3 @@
-embeddedpenguin/sanekeybinds
 fdellwing/zsh-bat
 hlissner/zsh-autopair
 mattmc3/ez-compinit
