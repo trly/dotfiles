@@ -1,6 +1,5 @@
 fdellwing/zsh-bat
 hlissner/zsh-autopair
-jeffreytse/zsh-vi-mode
 mattmc3/ez-compinit
 ohmyzsh/ohmyzsh path:plugins/brew
 ohmyzsh/ohmyzsh path:plugins/direnv
