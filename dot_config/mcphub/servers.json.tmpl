@@ -2,7 +2,7 @@
   "mcpServers": {
     {{- if eq .profile "work" }},
     "sourcegraph": {
-      "url": "{{ onepasswordRead "op://Employee/sourcegraph.sourcegraph.com API Token/credential" }}/.api/mcp"
+      "url": "https://sourcegraph.sourcegraph.com"
     }{{- end }}
   }
 }
