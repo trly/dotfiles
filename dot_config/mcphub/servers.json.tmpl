@@ -1,17 +1,7 @@
 {
   "mcpServers": {
-    "beads": {
-      "args": ["beads-mcp"],
-      "command": "uvx"
-    },
-    "playwright": {
-      "args": ["@playwright/mcp@latest"],
-      "command": "npx"
-    }{{- if eq .profile "work" }},
+    {{- if eq .profile "work" }},
     "sourcegraph": {
-      "headers": {
-        "Authorization": "{{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/password" }}"
-      },
       "url": "{{ onepasswordRead "op://Employee/demo.sourcegraph.com API Token/website" }}/.api/mcp/v1"
     }{{- end }}
   }
