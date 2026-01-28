@@ -13,6 +13,10 @@ email = "{{ .email.secondary }}"
 {{- end }}
 
 [ui]
-pager = ["sh", "-c", "diff-so-fancy | less -RFX"]
+pager = "delta"
+default-command = "log"
+
+[ui.diff]
+format = "git"
 editor = "nvim"
 
