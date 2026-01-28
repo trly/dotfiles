@@ -18,6 +18,7 @@ now_if_args(function()
     -- It is needed for compatibility with 'nvim-treesitter' `main` branch
     checkout = 'main',
   })
+  add({ 'MagicDuck/grug-far.nvim' })
 end)
 
 now_if_args(function()
