@@ -18,7 +18,6 @@ now_if_args(function()
     -- It is needed for compatibility with 'nvim-treesitter' `main` branch
     checkout = 'main',
   })
-  add({ source = 'MagicDuck/grug-far.nvim' })
 end)
 
 now_if_args(function()
@@ -28,6 +27,10 @@ end)
 
 now_if_args(function()
   add('neovim/nvim-lspconfig')
+end)
+
+later(function()
+  add('MagicDuck/grug-far.nvim')
 end)
 
 later(function()
