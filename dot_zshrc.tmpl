@@ -58,21 +58,21 @@ sg_results_extract_repos() {
   jq -r '[.Results[].repository.name] | unique | .[] | sub("^github.com/"; "")'
 }
 
-dotcom_search() {
-  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
-  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
-  src search -- "$@"
-}
-
-dotcom_search_json() {
-  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
-  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
-  src search -json "$@"
-}
-
-dotcom_get_repos() {
-  dotcom_search_json "$@" | sg_results_extract_repos
-}
+#dotcom_search() {
+#  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
+#  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
+#  src search -- "$@"
+#}
+#
+#dotcom_search_json() {
+#  SRC_ACCESS_TOKEN={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/credential" }} \
+#  SRC_ENDPOINT={{ onepasswordRead "op://Employee/bjqo4ayroswpj5vtamocynmtmq/url" }} \
+#  src search -json "$@"
+#}
+#
+#dotcom_get_repos() {
+#  dotcom_search_json "$@" | sg_results_extract_repos
+#}
 
 #### END WORK PROFILE ####
 {{- end }}
