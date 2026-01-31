@@ -43,6 +43,11 @@ later(function()
   files.setup()
 end)
 
+later(function()
+  local diff = require('mini.diff')
+  diff.setup()
+end)
+
 -- Show next key clues in a bottom right window. Requires explicit opt-in for
 -- keys that act as clue trigger. Example usage:
 -- - Press `<Leader>` and wait for 1 second. A window with information about
