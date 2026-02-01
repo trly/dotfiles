@@ -7,6 +7,16 @@ add({ source = 'ellisonleao/gruvbox.nvim' })
 require('gruvbox').setup({ terminal_colors = true })
 now(function() vim.cmd('colorscheme gruvbox') end)
 
+add({
+  source = 'nvim-neo-tree/neo-tree.nvim',
+  checkout = 'v3.x',
+  depends = {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "nvim-tree/nvim-web-devicons", -- optional, but recommended
+  }
+})
+
 now_if_args(function()
   add({
     source = 'nvim-treesitter/nvim-treesitter',
