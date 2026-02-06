@@ -50,7 +50,9 @@ later(function()
       'nvim-lua/plenary.nvim'
     }
   })
-  require('mcphub').setup()
+  require('mcphub').setup({
+    build = 'npm install -g mcp-hub@latest'
+  })
 end)
 
 later(function()
