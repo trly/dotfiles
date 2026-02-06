@@ -49,10 +49,9 @@ later(function()
     depends = {
       'nvim-lua/plenary.nvim'
     }
-  })
-  require('mcphub').setup({
     build = 'npm install -g mcp-hub@latest'
   })
+  require('mcphub').setup()
 end)
 
 later(function()
