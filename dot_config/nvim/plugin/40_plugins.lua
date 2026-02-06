@@ -50,6 +50,7 @@ later(function()
       'nvim-lua/plenary.nvim'
     }
   })
+  require('mcphub').setup()
 end)
 
 later(function()
