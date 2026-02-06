@@ -2,7 +2,11 @@
   "mcpServers": {
     {{- if eq .profile "work" }},
     "sourcegraph": {
-      "url": "https://sourcegraph.sourcegraph.com"
+      "url": "https://sourcegraph.sourcegraph.com/.api/mcp"
+    }{{- end }}
+    {{- if eq .profile "home" }},
+    "sourcegraph": {
+      "url": "https://sourcegraph.com/.api/mcp"
     }{{- end }}
   }
 }
