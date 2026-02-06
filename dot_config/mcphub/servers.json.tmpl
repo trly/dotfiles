@@ -1,5 +1,11 @@
 {
   "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
     {{- if eq .profile "work" }}
     "sourcegraph": {
       "url": "https://sourcegraph.sourcegraph.com/.api/mcp"
