@@ -44,6 +44,15 @@ later(function()
 end)
 
 later(function()
+  add({
+    source = 'ravitemer/mcphub.nvim',
+    depends = {
+      'nvim-lua/plenary.nvim'
+    }
+  })
+end)
+
+later(function()
   add('stevearc/conform.nvim')
 
   require('conform').setup({
