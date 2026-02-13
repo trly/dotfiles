@@ -38,11 +38,17 @@ end)
 
 later(function()
   add('MagicDuck/grug-far.nvim')
-end)
 
-later(function()
+  add({
+    source = 'MeanderingProgrammer/render-markdown.nvim',
+    depends = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-mini/mini.icons'
+    }
+  })
+  require('render-markdown').enable()
+
   add('stevearc/conform.nvim')
-
   require('conform').setup({
     default_format_opts = {
       lsp_format = 'fallback',
