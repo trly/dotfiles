@@ -18,6 +18,7 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -38,6 +39,10 @@ nmap_leader('fg', '<Cmd>Pick grep_live<CR>',                    'Grep live')
 nmap_leader('fG', '<Cmd>Pick grep pattern="<cword>"<CR>',       'Grep current word')
 nmap_leader('fh', '<Cmd>Pick help<CR>',                         'Help tags')
 nmap_leader('fr', '<Cmd>GrugFar<CR>', 				'Find/Replace')
+
+-- g is for 'Git'
+nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',                       'Show at cursor')
+nmap_leader('gd', '<Cmd>lua MiniDiff.toggle_overlay()<CR>',                      'Diff overlay toggle')
 
 -- e is for 'Explore/Edit'
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
