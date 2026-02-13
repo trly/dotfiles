@@ -22,35 +22,22 @@ now_if_args(function()
     source = 'nvim-treesitter/nvim-treesitter',
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
   })
+
   add({
     source = 'nvim-treesitter/nvim-treesitter-textobjects',
     -- Use `main` branch since `master` branch is frozen, yet still default
     -- It is needed for compatibility with 'nvim-treesitter' `main` branch
     checkout = 'main',
   })
-end)
 
-now_if_args(function()
   add('mason-org/mason.nvim')
   require('mason').setup()
-end)
 
-now_if_args(function()
   add('neovim/nvim-lspconfig')
 end)
 
 later(function()
   add('MagicDuck/grug-far.nvim')
-end)
-
-later(function()
-  add({
-    source = 'ravitemer/mcphub.nvim',
-    depends = {
-      'nvim-lua/plenary.nvim'
-    },
-  })
-  require('mcphub').setup()
 end)
 
 later(function()
