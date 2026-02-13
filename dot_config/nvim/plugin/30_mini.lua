@@ -3,7 +3,10 @@ local now, later = MiniDeps.now, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
 
 now(function() require('mini.basics').setup() end)
-now(function() require('mini.cmdline').setup() end)
+now(function()
+  require('mini.icons').setup()
+  MiniIcons.mock_nvim_web_devicons()
+end)
 now(function() require('mini.notify').setup() end)
 
 -- Miscellaneous small but useful functions. Example usage:
@@ -34,18 +37,10 @@ now_if_args(function()
 end)
 
 later(function()
-  local pick = require('mini.pick')
-  pick.setup()
-end)
-
-later(function()
-  local files = require('mini.files')
-  files.setup()
-end)
-
-later(function()
-  local diff = require('mini.diff')
-  diff.setup()
+  require('mini.cmdline').setup()
+  require('mini.pick').setup()
+  require('mini.files').setup()
+  require('mini.diff').setup()
 end)
 
 -- Show next key clues in a bottom right window. Requires explicit opt-in for
@@ -71,7 +66,7 @@ later(function()
     -- Define which clues to show. By default shows only clues for custom mappings
     -- (uses `desc` field from the mapping; takes precedence over custom clue).
     clues = {
-      -- This is defined in 'plugin/20_keymaps.lua' with Leader group descriptions
+      -- This is defined in 'plugin/20_keymap.lua' with Leader group descriptions
       Config.leader_group_clues,
       miniclue.gen_clues.builtin_completion(),
       miniclue.gen_clues.g(),
@@ -91,8 +86,8 @@ later(function()
     triggers = {
       { mode = { 'n', 'x' }, keys = '<Leader>' }, -- Leader triggers
       { mode =   'n',        keys = '\\' },       -- mini.basics
-      { mode = { 'n', 'x' }, keys = '[' },        -- mini.bracketed
-      { mode = { 'n', 'x' }, keys = ']' },
+      { mode = { 'n', 'x' }, keys = '[' },        -- Built-in [ mappings
+      { mode = { 'n', 'x' }, keys = ']' },        -- Built-in ] mappings
       { mode =   'i',        keys = '<C-x>' },    -- Built-in completion
       { mode = { 'n', 'x' }, keys = 'g' },        -- `g` key
       { mode = { 'n', 'x' }, keys = "'" },        -- Marks
@@ -100,9 +95,8 @@ later(function()
       { mode = { 'n', 'x' }, keys = '"' },        -- Registers
       { mode = { 'i', 'c' }, keys = '<C-r>' },
       { mode =   'n',        keys = '<C-w>' },    -- Window commands
-      { mode = { 'n', 'x' }, keys = 's' },        -- `s` key (mini.surround, etc.)
+      { mode = { 'n', 'x' }, keys = 's' },        -- `s` key
       { mode = { 'n', 'x' }, keys = 'z' },        -- `z` key
     },
   })
 end)
-

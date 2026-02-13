@@ -3,19 +3,22 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
 
 -- colorscheme
-add({ source = 'ellisonleao/gruvbox.nvim' })
-require('gruvbox').setup({ terminal_colors = true })
-now(function() vim.cmd('colorscheme gruvbox') end)
+now(function()
+  add({ source = 'ellisonleao/gruvbox.nvim' })
+  require('gruvbox').setup({ terminal_colors = true })
+  vim.cmd('colorscheme gruvbox')
+end)
 
-add({
-  source = 'nvim-neo-tree/neo-tree.nvim',
-  checkout = 'v3.x',
-  depends = {
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    "nvim-tree/nvim-web-devicons", -- optional, but recommended
-  }
-})
+later(function()
+  add({
+    source = 'nvim-neo-tree/neo-tree.nvim',
+    checkout = 'v3.x',
+    depends = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    }
+  })
+end)
 
 now_if_args(function()
   add({
@@ -38,6 +41,7 @@ end)
 
 later(function()
   add('MagicDuck/grug-far.nvim')
+  require('grug-far').setup()
 
   add({
     source = 'MeanderingProgrammer/render-markdown.nvim',
@@ -46,7 +50,7 @@ later(function()
       'nvim-mini/mini.icons'
     }
   })
-  require('render-markdown').enable()
+  require('render-markdown').setup()
 
   add('stevearc/conform.nvim')
   require('conform').setup({

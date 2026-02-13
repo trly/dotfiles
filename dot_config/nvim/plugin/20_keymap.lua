@@ -42,3 +42,4 @@ nmap_leader('fr', '<Cmd>GrugFar<CR>', 				'Find/Replace')
 -- e is for 'Explore/Edit'
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
 nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer in directory of current file')
+nmap_leader('et', '<Cmd>Neotree toggle<CR>', 'Explorer tree (Neo-tree)')
