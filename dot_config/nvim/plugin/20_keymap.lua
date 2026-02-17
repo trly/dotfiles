@@ -16,10 +16,12 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 -- This is used to provide 'mini.clue' with extra clues.
 -- Add an entry if you create a new group.
 _G.Config.leader_group_clues = {
+  { mode = 'n', keys = '<Leader>a', desc = '+AI' },
+  { mode = 'n', keys = '<Leader>c', desc = '+Code' },
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'n', keys = '<Leader>a', desc = '+AI' },
+  { mode = 'n', keys = '<Leader>l', desc = '+LSP/Language' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -55,3 +57,12 @@ nmap_leader('aa', '<Cmd>CodeCompanionActions<CR>', 'Actions')
 nmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
 xmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
 nmap_leader('ai', '<Cmd>CodeCompanion<CR>', 'Inline')
+
+-- c is for 'Code'
+nmap_leader('cf', '<Cmd>lua require("conform").format()<CR>', 'Format buffer')
+
+-- l is for 'LSP/Language'
+nmap_leader('li', '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover')
+nmap_leader('ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition')
+nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
+nmap_leader('ln', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
