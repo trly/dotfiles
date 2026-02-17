@@ -39,6 +39,31 @@ now_if_args(function()
   add('neovim/nvim-lspconfig')
 end)
 
+now(function()
+  add({ source = 'sourcegraph/amp.nvim' })
+  require('amp').setup({ auto_start = true, log_level = 'info' })
+end)
+
+later(function()
+  add({
+    source = 'olimorris/codecompanion.nvim',
+    depends = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+  })
+  require('codecompanion').setup({
+	  interactions = {
+		  chat = {
+			  adapter = {
+				  name = "claude_code",
+				  model = "opus",
+			  }
+		  }
+	  }
+  })
+end)
+
 later(function()
   add('MagicDuck/grug-far.nvim')
   require('grug-far').setup()

@@ -19,6 +19,7 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+  { mode = 'n', keys = '<Leader>a', desc = '+AI' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -48,3 +49,9 @@ nmap_leader('gd', '<Cmd>lua MiniDiff.toggle_overlay()<CR>',                     
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
 nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer in directory of current file')
 nmap_leader('et', '<Cmd>Neotree toggle<CR>', 'Explorer tree (Neo-tree)')
+
+-- a is for 'AI'
+nmap_leader('aa', '<Cmd>CodeCompanionActions<CR>', 'Actions')
+nmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
+xmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
+nmap_leader('ai', '<Cmd>CodeCompanion<CR>', 'Inline')
