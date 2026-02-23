@@ -22,6 +22,7 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP/Language' },
+  { mode = 'n', keys = '<Leader>q', desc = '+Quit' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -60,6 +61,9 @@ nmap_leader('ai', '<Cmd>CodeCompanion<CR>', 'Inline')
 
 -- c is for 'Code'
 nmap_leader('cf', '<Cmd>lua require("conform").format()<CR>', 'Format buffer')
+
+-- q is for 'Quit'
+nmap_leader('qq', '<Cmd>confirm qall<CR>', 'Quit all')
 
 -- l is for 'LSP/Language'
 nmap_leader('li', '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover')
