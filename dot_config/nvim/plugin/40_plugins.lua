@@ -65,6 +65,11 @@ later(function()
 end)
 
 later(function()
+  add({ source = 'folke/trouble.nvim', depends = { 'nvim-mini/mini.icons' } })
+  require('trouble').setup()
+end)
+
+later(function()
   add('MagicDuck/grug-far.nvim')
   require('grug-far').setup()
 
