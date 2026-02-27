@@ -20,3 +20,19 @@ default-command = "log"
 format = "git"
 editor = "nvim"
 
+[aliases]
+push-with-checks = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+eval "$(mise activate bash)"
+read to_ref from_ref < <(
+  jj log -r 'remote_bookmarks(remote=origin)-..bookmarks()' --no-graph -T 'commit_id ++ "\n"' \
+    | awk 'NR==1 {first=$0} {last=$0} END {print first, last}'
+)
+if [ -z "$to_ref" ]; then
+  echo "Nothing to push."
+  exit 0
+fi
+pre-commit run --from-ref "$from_ref" --to-ref "$to_ref"
+jj git push "$@"
+""", ""]
+
