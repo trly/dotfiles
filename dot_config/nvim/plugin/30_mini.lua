@@ -52,6 +52,38 @@ later(function()
 end)
 
 later(function()
+  require('mini.completion').setup({
+    lsp_completion = {
+      auto_setup = false,
+      process_items = function(items, base)
+        return MiniCompletion.default_process_items(items, base, { filtersort = 'fuzzy' })
+      end,
+    },
+  })
+
+  -- Set completefunc on LSP attach rather than every BufEnter
+  vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+      vim.bo[args.buf].completefunc = 'v:lua.MiniCompletion.completefunc_lsp'
+    end,
+  })
+
+  -- Tab/S-Tab to navigate completion popup
+  local imap_expr = function(lhs, rhs)
+    vim.keymap.set('i', lhs, rhs, { expr = true })
+  end
+  imap_expr('<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
+  imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
+
+  -- CR: accept selected item or fall back to mini.pairs-aware CR
+  _G.cr_action = function()
+    if vim.fn.complete_info()['selected'] ~= -1 then return '\25' end
+    return MiniPairs.cr()
+  end
+  vim.keymap.set('i', '<CR>', 'v:lua.cr_action()', { expr = true })
+end)
+
+later(function()
   local hipatterns = require('mini.hipatterns')
   local hi_words = MiniExtra.gen_highlighter.words
   hipatterns.setup({
