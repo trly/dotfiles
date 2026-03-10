@@ -22,6 +22,7 @@ _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP/Language' },
+  { mode = 'n', keys = '<Leader>q', desc = '+Quit' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -70,3 +71,6 @@ nmap_leader('li', '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover')
 nmap_leader('ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition')
 nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
 nmap_leader('ln', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
+
+-- q is for 'Quit'
+nmap_leader('qq', '<Cmd>qa<CR>', 'Quit all')
