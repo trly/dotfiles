@@ -69,6 +69,13 @@ later(function()
   require('trouble').setup()
 end)
 
+now_if_args(function()
+  add({
+    source = 'iamcco/markdown-preview.nvim',
+    hooks = { post_checkout = function() vim.fn['mkdp#util#install']() end },
+  })
+end)
+
 later(function()
   add('MagicDuck/grug-far.nvim')
   require('grug-far').setup()

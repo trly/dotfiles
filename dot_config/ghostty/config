@@ -1,7 +1,7 @@
 # Appearance
 theme = light:Gruvbox Light,dark:Gruvbox Dark
 font-family="MonaspiceKr Nerd Font Mono"
-font-size=14
+font-size=24
 mouse-hide-while-typing=true
 background-opacity=.95
 background-blur=true
