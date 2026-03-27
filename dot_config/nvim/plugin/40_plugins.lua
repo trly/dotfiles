@@ -1,6 +1,18 @@
 -- plugin configuration
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
+local treesitter_highlight_filetypes = { 
+	'go',
+	'groovy',
+	'ini',
+	'java',
+	'json',
+	'kotlin', 
+	'lua',
+	'markdown', 
+	'toml', 
+	'yaml' 
+}
 
 -- colorscheme
 now(function()
@@ -20,7 +32,7 @@ later(function()
   })
 end)
 
-now_if_args(function()
+now(function()
   add({
     source = 'nvim-treesitter/nvim-treesitter',
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
@@ -33,10 +45,29 @@ now_if_args(function()
     checkout = 'main',
   })
 
+  -- Start Tree-sitter explicitly for filetypes that should always use it.
+  vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('treesitter-highlight', { clear = true }),
+    pattern = treesitter_highlight_filetypes,
+    callback = function(args)
+      pcall(vim.treesitter.start, args.buf)
+    end,
+  })
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.tbl_contains(treesitter_highlight_filetypes, vim.bo[buf].filetype) then
+      pcall(vim.treesitter.start, buf)
+    end
+  end
+end)
+
+now_if_args(function()
   add('mason-org/mason.nvim')
   require('mason').setup()
 
   add('neovim/nvim-lspconfig')
+  vim.lsp.enable('jdtls')
+  vim.lsp.enable('kotlin_language_server')
 end)
 
 now(function()
