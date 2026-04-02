@@ -1,7 +1,11 @@
 # Appearance
 theme = light:Gruvbox Light,dark:Gruvbox Dark
 font-family="MonaspiceKr Nerd Font Mono"
+{{- if eq .profile "work"}}
 font-size=24
+{{- else }}
+font-size=12
+{{- end }}
 mouse-hide-while-typing=true
 background-opacity=.95
 background-blur=true
