@@ -6,6 +6,7 @@ README.md
 AGENT.md
 AGENTS.md
 LICENSE
+.agents/checks
 
 # Ignore non-macOS files.
 {{ if ne .chezmoi.os "darwin" -}}

@@ -1,0 +1,21 @@
+# Repository Guide
+- This repo is a personal dotfiles source managed by chezmoi; source files render into `$HOME`.
+- Naming: `dot_*` => dotfile targets, `private_*` => private files, `.tmpl` => Go-template sources.
+- No Cursor/Claude/Windsurf/Cline/Goose/Copilot rule files exist here; also follow scoped rules in `dot_config/AGENTS.md` and `dot_config/nvim/AGENTS.md`.
+- No dedicated build, lint, or unit-test suite exists; use chezmoi verification commands instead.
+- Chezmoi reference docs: `https://www.chezmoi.io/reference/`; key command pages: `https://www.chezmoi.io/reference/commands/apply/`, `https://www.chezmoi.io/reference/commands/diff/`, `https://www.chezmoi.io/reference/commands/execute-template/`, and `https://www.chezmoi.io/reference/commands/verify/`.
+- Main repo checks: `chezmoi verify` and `chezmoi apply --dry-run --verbose`.
+- Single-file "test": `chezmoi diff --source-path <source-file> --no-pager` or `chezmoi apply --dry-run --source-path <source-file>`.
+- Single-template render check: `chezmoi execute-template --file <source-template>`.
+- Single-target check: `chezmoi verify <target-path>` (example `chezmoi verify ~/.config/ghostty/config`).
+- Neovim Lua sanity check after config edits: `nvim --headless '+qa'`.
+- `.chezmoi.toml.tmpl` defines prompt-backed data (`profile`, `email.*`) and enables auto-commit/auto-push.
+- `.chezmoiexternal.toml` manages external git checkouts; `dot_config/mise/config.toml` declares runtime tools.
+- `dot_zshrc.tmpl`, `dot_gitconfig.tmpl`, `private_dot_ssh/`, `dot_config/ghostty/`, and `dot_config/private_jj/` are the main shell/git/terminal/VCS configs.
+- `dot_config/nvim/` is a self-contained Neovim subproject; `init.lua` bootstraps `mini.nvim`, `plugin/10_*`..`40_*` load in numeric order, and `_G.Config` is the shared internal API.
+- There is no app server or database here; external integrations are mainly chezmoi template data, `onepasswordRead` lookups, and fetched git repos.
+- Preserve the existing file format and indentation in each file; do not normalize unrelated whitespace.
+- Keep templates declarative and profile-gated with `if eq .profile ...`; prefer data/config over helper logic.
+- Never commit rendered secrets or hardcode credentials; use `onepasswordRead` for secrets.
+- In Lua, prefer `local` constants, small setup blocks, and existing `MiniDeps.now/later/add` patterns.
+- Follow existing names/load order and keep comments sparse; avoid broad refactors in personal config files.
