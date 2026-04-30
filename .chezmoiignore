@@ -1,8 +1,10 @@
 # -*-mode:gitignore-*- vim:ft=gitignore
 
 *.gz
+# Ignore repo-root docs/instructions in $HOME, but keep nested managed files.
 README.md
 AGENT.md
+AGENTS.md
 LICENSE
 
 # Ignore non-macOS files.
@@ -18,4 +20,3 @@ dot_config/windows_terminal
 
 # .oh-my-zsh
 .oh-my-zsh/cache
-
