@@ -8,11 +8,13 @@
 - Tests should serve as documentation and specification of behavior
 - Test through the public API exclusively - internals should be invisible to tests
 - if a language supports immutability, always make a variable constant unless it can't be
+- If `jj` is available and initialized in a repository, use it for version control instead of `git`
 
 ### Anti-Patterns
 
 - NEVER create or submit issues (github, linear, etc.) without first confirming
 - NEVER open Pull/Merge Requests unless instructued to do so
+- NEVER use `git push --force` or `git push -f`. Always ask the user to do it if needed.
 
 ## Development Guidelines
 
