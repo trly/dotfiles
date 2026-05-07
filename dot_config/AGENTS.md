@@ -16,6 +16,23 @@
 - NEVER open Pull/Merge Requests unless instructued to do so
 - NEVER use `git push --force` or `git push -f`. Always ask the user to do it if needed.
 
+## Agent Clarification Workflow
+
+When you need clarification from the user on ambiguous requests:
+
+1. **Ask one question at a time** in multiple choice format
+2. **Format**: Present options as `A) Option one`, `B) Option two`, etc.
+3. **Keep options concise** and mutually exclusive
+4. **Wait for user response** before proceeding
+5. **Restate the question** if the user repeats instructions without answering
+
+This applies to:
+- Feature design decisions
+- Scope and prioritization
+- Configuration options
+- Tool or technology selection
+- When the request has multiple valid interpretations
+
 ## Development Guidelines
 
 ### Rule of Modularity
