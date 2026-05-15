@@ -8,30 +8,11 @@
 - Tests should serve as documentation and specification of behavior
 - Test through the public API exclusively - internals should be invisible to tests
 - if a language supports immutability, always make a variable constant unless it can't be
-- If `jj` is available and initialized in a repository, use it for version control instead of `git`
 
 ### Anti-Patterns
 
 - NEVER create or submit issues (github, linear, etc.) without first confirming
 - NEVER open Pull/Merge Requests unless instructued to do so
-- NEVER use `git push --force` or `git push -f`. Always ask the user to do it if needed.
-
-## Agent Clarification Workflow
-
-When you need clarification from the user on ambiguous requests:
-
-1. **Ask one question at a time** in multiple choice format
-2. **Format**: Present options as `A) Option one`, `B) Option two`, etc.
-3. **Keep options concise** and mutually exclusive
-4. **Wait for user response** before proceeding
-5. **Restate the question** if the user repeats instructions without answering
-
-This applies to:
-- Feature design decisions
-- Scope and prioritization
-- Configuration options
-- Tool or technology selection
-- When the request has multiple valid interpretations
 
 ## Development Guidelines
 

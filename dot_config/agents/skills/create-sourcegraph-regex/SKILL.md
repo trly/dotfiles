@@ -129,3 +129,10 @@ Request: only TypeScript files under `client/`.
 - Case behavior is explicit (`case:yes` if needed).
 - Query is complete and runnable as written.
 
+## Source-of-Truth Locations
+
+Read these files in `github.com/sourcegraph/sourcegraph` to verify regex compilation behavior:
+
+- `internal/search/zoektquery/query.go` — Defines the canonical `regexpFlags = syntax.ClassNL | syntax.PerlX | syntax.UnicodeGroups` and compiles patterns via `syntax.Parse`. This is the authoritative source for which RE2 features are enabled.
+- `internal/search/query/validate.go` — `isValidRegexp` compiles filter values (e.g. `repo:`, `file:`) via `grafana/regexp` to reject invalid RE2 before execution.
+- `internal/search/query/predicate.go` — Validates regex inside predicates (`file:has.content(...)`, `repo:contains.file(path:..., content:...)`) using `syntax.Parse(pattern, syntax.Perl)`.
