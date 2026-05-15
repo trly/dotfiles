@@ -2,10 +2,18 @@
 export ZSH="$HOME/.zsh"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export HISTFILE=$ZSH/zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
 
 zle -N menu-search
 zle -N recent-paths
@@ -15,8 +23,6 @@ zstyle ':omz:plugins:eza' 'dirs-first' yes
 
 source $ZSH/antidote/antidote.zsh
 antidote load $ZSH/zsh_plugins.txt
-
-autoload -Uz compinit && compinit
 
 if command -v nvim &> /dev/null; then
   export EDITOR="nvim"

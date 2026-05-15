@@ -1,88 +1,32 @@
-# Personal Dotfiles with Chezmoi
+# Personal Dotfiles
 
-Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/)
+Managed with [chezmoi](https://www.chezmoi.io/). Secrets fetched from [1Password](https://1password.com/) at apply time.
 
-## 🚀 Quick Start
+## Setup
+
+Prerequisites: `chezmoi`, `git`, 1Password desktop app + CLI (signed in).
 
 ```bash
-# Install chezmoi
 sh -c "$(curl -fsLS get.chezmoi.io)"
-
-# Initialize and apply dotfiles
 chezmoi init --apply https://github.com/trly/dotfiles.git
 ```
 
-## 📋 Requirements
+You'll be prompted for primary/secondary email and a profile (`work` or `home`).
 
-- macOS or Linux with Zsh
-- chezmoi >= v2.42
-- 1Password CLI
-- Git 2.30+
-
-**Optional but recommended:**
-```bash
-brew install diff-so-fancy neovim mise fzf zsh-autosuggestions zsh-syntax-highlighting
-```
-
-## 🔧 Installation
-
-### First-time Setup
-
-1. **Install chezmoi** (if not already installed):
-   ```bash
-   sh -c "$(curl -fsLS get.chezmoi.io)"
-   ```
-
-2. **Initialize dotfiles**:
-   ```bash
-   chezmoi init --apply https://github.com/trly/dotfiles.git
-   ```
-
-3. **You'll be prompted for**:
-    - Email address (used in Git configuration)
-    - Profile (`work` or `home`)
-
-4. **Authenticate 1Password CLI**:
-   ```bash
-   eval "$(op signin)"
-   ```
-
-5. **Apply to pull secrets**:
-   ```bash
-   chezmoi apply
-   ```
-
-6. **Restart your shell** or open a new terminal
-
-### Non-interactive Installation
+## Post-setup
 
 ```bash
-export CHEZMOI_EMAIL="your@email.com"
-export CHEZMOI_PROFILE="home"
-chezmoi init --apply https://github.com/trly/dotfiles.git
+mise install        # install runtimes declared in dot_config/mise/config.toml
+exec zsh            # new shell triggers antidote to clone+cache plugins
 ```
 
-Files prefixed with `dot_` map to dotfiles in `$HOME`. Templates use `{{ .variable }}` syntax.
-
-## 🔐 Secrets Management
-
-All secrets are stored in 1Password and referenced via templates:
+## Updating
 
 ```bash
-export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+chezmoi update      # pull repo + apply changes
 ```
 
-**Requirements:**
-- 1Password CLI installed and signed in
-- Secrets stored in 1Password with correct vault/item paths
+## Troubleshooting
 
-**Adding new secrets:**
-1. Store in 1Password
-2. Reference in templates using `onepasswordRead`
-3. Apply changes with `chezmoi apply`
-
-**Auto-commit enabled**: Changes are automatically committed and pushed when you run `chezmoi apply`.
-
-## 📄 License
-
-MIT License - feel free to use and modify as needed.
+- **Plugin order changed but not picked up**: `rm ~/.zsh/zsh_plugins.zsh` then `exec zsh`.
+- **Secrets failing to render**: ensure 1Password is unlocked and `op` is signed in.

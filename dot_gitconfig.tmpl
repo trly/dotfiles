@@ -22,6 +22,40 @@
 [merge]
   conflictStyle = zdiff3
 
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[column]
+  ui = auto
+
+[commit]
+  verbose = true
+
+[help]
+  autocorrect = prompt
+
 [color]
 	ui = true
 
@@ -72,6 +106,7 @@
 
 [push]
   autoSetupRemote = true
+  followTags = true
 
 [pull]
   rebase = true

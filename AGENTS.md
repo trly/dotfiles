@@ -6,7 +6,7 @@
 - Chezmoi reference docs: `https://www.chezmoi.io/reference/`; key command pages: `https://www.chezmoi.io/reference/commands/apply/`, `https://www.chezmoi.io/reference/commands/diff/`, `https://www.chezmoi.io/reference/commands/execute-template/`, and `https://www.chezmoi.io/reference/commands/verify/`.
 - Main repo checks: `chezmoi verify` and `chezmoi apply --dry-run --verbose`.
 - Single-file "test": `chezmoi diff --source-path <source-file> --no-pager` or `chezmoi apply --dry-run --source-path <source-file>`.
-- Single-template render check: `chezmoi execute-template --file <source-template>`.
+- Single-template render check: `chezmoi execute-template --file <source-template> > /dev/null`. Always redirect to `/dev/null`; templates may call `onepasswordRead` (or similar secret-fetching functions) and rendering to stdout would leak secrets into the terminal scrollback and shell history. Use `chezmoi diff`/`verify` for content inspection because they render to the target file, not stdout.
 - Single-target check: `chezmoi verify <target-path>` (example `chezmoi verify ~/.config/ghostty/config`).
 - Neovim Lua sanity check after config edits: `nvim --headless '+qa'`.
 - `.chezmoi.toml.tmpl` defines prompt-backed data (`profile`, `email.*`) and enables auto-commit/auto-push.
