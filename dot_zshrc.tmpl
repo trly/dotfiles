@@ -41,6 +41,10 @@ if command -v lazygit &> /dev/null; then
   alias lg=lazygit
 fi
 
+if command -v rustup &> /dev/null; then
+  export PATH=".cargo/bin:$PATH"
+fi
+
 {{- if eq .profile "home"}}
 #### BEGIN HOME PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
