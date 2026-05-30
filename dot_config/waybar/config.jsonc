@@ -3,7 +3,7 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "spacing": 2,
+    "spacing": 6,
     "fixed-center": true,
 
     "modules-left": [
@@ -55,12 +55,13 @@
     },
 
     "battery": {
+        "min-width": 24,
         "states": {
             "warning": 30,
             "critical": 15
         },
         "format": "{icon}",
-        "format-charging": "",
+        "format-charging": "",
         "format-plugged": "",
         "format-icons": ["", "", "", "", ""],
         "tooltip-format": "{capacity}%\n{time}",
@@ -71,6 +72,7 @@
         "format-wifi": "",
         "format-ethernet": "",
         "format-disconnected": "",
+        "min-width": 26,
         "tooltip": true,
         "tooltip-format": "{essid}  {ifname}  {ipaddr}/{cidr}",
         "on-click": "ghostty --title=impala -e impala"
@@ -80,13 +82,16 @@
         "format": "",
         "format-disconnected": "",
         "format-connected": " {device_alias}",
+        "min-width": 26,
         "tooltip-format": "{device_alias}  {device_address}  {device_battery_percentage}%",
         "on-click": "ghostty --title=bluetui -e bluetui"
     },
 
     "wireplumber": {
-        "format": "",
-        "format-muted": "",
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
+        "min-width": 32,
         "node-type": "Audio/Sink",
         "on-click": "ghostty --title=wiremix -e wiremix",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
