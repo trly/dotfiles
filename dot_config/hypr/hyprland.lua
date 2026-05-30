@@ -1,15 +1,3 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/Configuring/Start/
-
--- Please note not all available settings / options are set here.
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
-
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -30,6 +18,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "ghostty"
 local fileManager = "yazi"
+local wifiManager = "impala"
 local menu        = "hyprlauncher"
 
 
@@ -258,7 +247,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " -e " .. fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -353,4 +342,26 @@ hl.window_rule({
 
     move  = "20 monitor_h-120",
     float = true,
+})
+
+-- Float TUI apps launched from waybar clicks
+hl.window_rule({
+    name  = "float-impala",
+    match = { class = "com\\.mitchellh\\.ghostty", title = "^impala$" },
+    float = true,
+    center = true,
+})
+
+hl.window_rule({
+    name  = "float-wiremix",
+    match = { class = "com\\.mitchellh\\.ghostty", title = "^wiremix$" },
+    float = true,
+    center = true,
+})
+
+hl.window_rule({
+    name  = "float-bluetui",
+    match = { class = "com\\.mitchellh\\.ghostty", title = "^bluetui$" },
+    float = true,
+    center = true,
 })
