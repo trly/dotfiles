@@ -16,9 +16,15 @@ local treesitter_highlight_filetypes = {
 
 -- colorscheme
 now(function()
-  add({ source = 'ellisonleao/gruvbox.nvim' })
-  require('gruvbox').setup({ terminal_colors = true })
-  vim.cmd('colorscheme gruvbox')
+  add({ source = 'catppuccin/nvim', name = 'catppuccin' })
+  require('catppuccin').setup({
+    flavour = 'frappe',
+    term_colors = true,
+    integrations = {
+      mini = { enabled = true },
+    },
+  })
+  vim.cmd('colorscheme catppuccin-nvim')
 end)
 
 later(function()

@@ -1,3 +1,5 @@
+local colors = require('themes.catppuccin-frappe')
+
 ------------------
 ---- MONITORS ----
 ------------------
@@ -22,9 +24,9 @@ local wifiManager = "impala"
 local menu        = "hyprlauncher"
 
 
--------------------
+--------------------
 ---- AUTOSTART ----
--------------------
+--------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
@@ -80,8 +82,8 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = "rgba(c48535ee)",
-            inactive_border = "rgba(2c2925ee)",
+            active_border   = "rgba(" .. colors.peachAlpha .. "ee)",
+            inactive_border = "rgba(" .. colors.surface0Alpha .. "ee)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -105,7 +107,7 @@ hl.config({
             enabled      = true,
             range        = 4,
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = "rgba(" .. colors.crustAlpha .. "ee)",
         },
 
         blur = {
