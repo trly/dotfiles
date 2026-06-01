@@ -81,7 +81,7 @@ hl.config({
 
         col = {
             active_border   = "rgba(c48535ee)",
-            inactive_border = "rgba(3a3734aa)",
+            inactive_border = "rgba(2c2925ee)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
