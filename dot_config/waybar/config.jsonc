@@ -31,20 +31,19 @@
             "3": "3",
             "4": "4",
             "5": "5",
-            "active": "",
-            "default": "",
+            "active": "",
+            "default": " ",
             "urgent": ""
         }
     },
 
     "hyprland/window": {
-        "format": "{}",
         "max-length": 50,
         "separate-outputs": true
     },
 
     "hyprland/submap": {
-        "format": "<span style=\"italic\">{}</span>",
+        "format": "{}",
         "tooltip": false
     },
 
@@ -55,7 +54,6 @@
     },
 
     "battery": {
-        "min-width": 24,
         "states": {
             "warning": 30,
             "critical": 15
@@ -72,7 +70,7 @@
         "format-wifi": "",
         "format-ethernet": "",
         "format-disconnected": "",
-        "min-width": 26,
+        "format-connecting": "",
         "tooltip": true,
         "tooltip-format": "{essid}  {ifname}  {ipaddr}/{cidr}",
         "on-click": "ghostty --title=impala -e impala"
@@ -81,8 +79,7 @@
     "bluetooth": {
         "format": "",
         "format-disconnected": "",
-        "format-connected": " {device_alias}",
-        "min-width": 26,
+        "format-connected": "",
         "tooltip-format": "{device_alias}  {device_address}  {device_battery_percentage}%",
         "on-click": "ghostty --title=bluetui -e bluetui"
     },
@@ -91,7 +88,6 @@
         "format": "{icon}",
         "format-muted": "",
         "format-icons": ["", "", ""],
-        "min-width": 32,
         "node-type": "Audio/Sink",
         "on-click": "ghostty --title=wiremix -e wiremix",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",

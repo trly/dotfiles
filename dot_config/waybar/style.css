@@ -1,6 +1,6 @@
 * {
-    font-family: JetBrainsMono Nerd Font, JetBrains Mono, IosevkaTerm Nerd Font, Iosevka, monospace;
-    font-size: 13px;
+    font-family: JetBrainsMono Nerd Font, monospace;
+    font-size: 15px;
     font-weight: 400;
 }
 
@@ -43,8 +43,9 @@ button:hover {
     color: #b84737;
 }
 
-#mode {
+#submap {
     font-weight: 600;
+    font-style: italic;
     color: #c48535;
 }
 
@@ -68,16 +69,19 @@ button:hover {
 #battery.critical:not(.charging) {
     color: #b84737;
     animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
+    animation-duration: 1s;
+    animation-timing-function: steps(2);
     animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
 @keyframes blink {
     to {
         color: #c2bbb0;
     }
+}
+
+#network.connecting {
+    color: #6e6860;
 }
 
 #network.disconnected {
@@ -100,7 +104,8 @@ button:hover {
     color: #c2bbb0;
 }
 
-#bluetooth.disconnected {
+#bluetooth.on,
+#bluetooth.off {
     color: #6e6860;
 }
 
@@ -112,7 +117,7 @@ button:hover {
 #tray,
 #window,
 #workspaces,
-#mode {
+#submap {
     background: transparent;
 }
 
@@ -123,7 +128,7 @@ button:hover {
 }
 
 #network {
-    min-width: 26px;
+    min-width: 32px;
 }
 
 #bluetooth {
@@ -131,7 +136,7 @@ button:hover {
 }
 
 #battery {
-    min-width: 24px;
+    min-width: 32px;
 }
 
 #wireplumber {
