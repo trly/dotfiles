@@ -124,21 +124,12 @@ button:hover {
 .modules-left > widget,
 .modules-center > widget,
 .modules-right > widget {
-    padding: 0 5px;
+    padding: 0 6px;
 }
 
-#network {
-    min-width: 32px;
-}
-
-#bluetooth {
-    min-width: 26px;
-}
-
-#battery {
-    min-width: 32px;
-}
-
+#network,
+#bluetooth,
+#battery,
 #wireplumber {
     min-width: 32px;
 }
