@@ -22,12 +22,12 @@ button {
 }
 
 button:hover {
-    background: #414559;
+    color: #c6d0f5;
 }
 
 #workspaces button {
     padding: 0 5px;
-    color: #737994;
+    color: #838ba7;
 }
 
 #workspaces button:hover {
@@ -35,8 +35,8 @@ button:hover {
 }
 
 #workspaces button.active {
-    color: #ef9f76;
-    box-shadow: inset 0 -2px #ef9f76;
+    color: #8caaee;
+    box-shadow: inset 0 -2px #8caaee;
 }
 
 #workspaces button.urgent {
@@ -46,7 +46,7 @@ button:hover {
 #submap {
     font-weight: 600;
     font-style: italic;
-    color: #ef9f76;
+    color: #8caaee;
 }
 
 #clock {
@@ -74,6 +74,10 @@ button:hover {
     animation-iteration-count: infinite;
 }
 
+#battery.warning:not(.charging) {
+    color: #e5c890;
+}
+
 @keyframes blink {
     to {
         color: #c6d0f5;
@@ -81,7 +85,7 @@ button:hover {
 }
 
 #network.connecting {
-    color: #737994;
+    color: #838ba7;
 }
 
 #network.disconnected {
@@ -89,7 +93,7 @@ button:hover {
 }
 
 #wireplumber.muted {
-    color: #737994;
+    color: #838ba7;
 }
 
 #clock:hover,
@@ -97,7 +101,7 @@ button:hover {
 #bluetooth:hover,
 #network:hover,
 #wireplumber:hover {
-    background: #414559;
+    color: #c6d0f5;
 }
 
 #bluetooth.connected {
@@ -106,7 +110,7 @@ button:hover {
 
 #bluetooth.on,
 #bluetooth.off {
-    color: #737994;
+    color: #838ba7;
 }
 
 #clock,

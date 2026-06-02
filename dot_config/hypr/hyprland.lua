@@ -85,7 +85,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = "rgba(" .. colors.peachAlpha .. "ee)",
+            active_border   = "rgba(" .. colors.blueAlpha .. "ee)",
             inactive_border = "rgba(" .. colors.surface0Alpha .. "ee)",
         },
 
