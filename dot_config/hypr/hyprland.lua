@@ -22,6 +22,7 @@ local terminal    = "ghostty"
 local fileManager = "yazi"
 local wifiManager = "impala"
 local menu        = "hyprlauncher"
+local lockCommand = "pidof hyprlock >/dev/null 2>&1 || hyprlock"
 
 
 --------------------
@@ -37,7 +38,8 @@ local menu        = "hyprlauncher"
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
    hl.exec_cmd("waybar & hyprpaper")
-   h1.exec_cmd("1password --quiet")
+   hl.exec_cmd("pidof hypridle >/dev/null 2>&1 || hypridle -q")
+   hl.exec_cmd("1password --quiet")
  end)
 
 
@@ -250,7 +252,8 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockCommand))
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lockCommand), { locked = true })
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
