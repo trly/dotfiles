@@ -39,7 +39,7 @@ local lockCommand = "pidof hyprlock >/dev/null 2>&1 || hyprlock"
 --   hl.exec_cmd("nm-applet")
    hl.exec_cmd("waybar & hyprpaper")
    hl.exec_cmd("pidof hypridle >/dev/null 2>&1 || hypridle -q")
-   hl.exec_cmd("1password --quiet")
+   hl.exec_cmd("1password --silent")
  end)
 
 
