@@ -37,6 +37,7 @@ local menu        = "hyprlauncher"
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
    hl.exec_cmd("waybar & hyprpaper")
+   h1.exec_cmd("1password --quiet")
  end)
 
 
@@ -249,6 +250,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
