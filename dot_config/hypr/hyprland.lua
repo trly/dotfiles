@@ -21,6 +21,7 @@ hl.monitor({
 local terminal    = "ghostty"
 local fileManager = "yazi"
 local lockCommand = "dms ipc call lock lock"
+local menuCommand = "dms ipc call spotlight toggle"
 
 --------------------
 ---- AUTOSTART ----
@@ -246,6 +247,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockCommand))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menuCommand))
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lockCommand), { locked = true })
 
 -- Move focus with mainMod + arrow keys
