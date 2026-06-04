@@ -2,7 +2,11 @@
 window-theme = ghostty
 theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 font-family="IosevkaTermSlab Nerd Font Mono"
-font-size=16
+{{- if eq .chezmoi.hostname "6cf90a5e80be" }}
+font-size=24
+{{- else }}
+font-size=12
+{{- end}}
 mouse-hide-while-typing=true
 background-opacity=.95
 background-blur=true
