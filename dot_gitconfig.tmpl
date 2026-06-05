@@ -4,7 +4,7 @@
 {{- if eq .profile "work"}}
   signingkey = {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
 {{- end }}
-{{- if eq .profile "home"}}
+{{- if eq .profile "personal"}}
   signingkey = {{ onepasswordRead "op://Private/SSH Key/public key" }}
 {{- end }}
 

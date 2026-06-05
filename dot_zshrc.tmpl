@@ -59,14 +59,14 @@ if command -v rustup &> /dev/null; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-{{- if eq .profile "home"}}
-#### BEGIN HOME PROFILE ####
+{{- if eq .profile "personal"}}
+#### BEGIN PERSONAL PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 {{- if eq .chezmoi.osRelease.id "arch"}}
 export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 {{- end }}
-#### END HOME PROFILE ####
+#### END PERSONAL PROFILE ####
 {{- end }}
 
 {{- if eq .profile "work"}}
