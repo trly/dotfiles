@@ -1,6 +1,6 @@
 {{- $emailPrimary := promptStringOnce . "emailPrimary" "primary e-mail address" -}}
 {{- $emailSecondary := promptStringOnce . "emailSecondary" "secondary e-mail address" -}}
-{{- $profileChoices := list "work" "home" -}}
+{{- $profileChoices := list "work" "personal" -}}
 {{- $profile := promptChoiceOnce . "profile" "What configuration profile should be used" $profileChoices -}}
 
 [data]
