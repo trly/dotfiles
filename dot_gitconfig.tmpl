@@ -90,6 +90,7 @@
   format = ssh
 
 [gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
 {{- if eq .profile "work"}}
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 {{ else }}

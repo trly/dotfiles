@@ -1,0 +1,5 @@
+# SSH allowed signers for Git commit/tag verification
+{{ .email.primary }} namespaces="git" {{ onepasswordRead "op://Private/SSH Key/public key" }}
+{{- if eq .profile "work" }}
+{{ .email.secondary }} namespaces="git" {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
+{{- end }}
