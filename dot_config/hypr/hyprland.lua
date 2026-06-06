@@ -18,10 +18,12 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
+local ipc = "qs -c noctalia-shell ipc call"
 local terminal    = "ghostty"
 local fileManager = "yazi"
-local lockCommand = "dms ipc call lock lock"
-local menuCommand = "dms ipc call spotlight toggle"
+local lockCommand = ipc .. " lockScreen lock"
+local menuCommand = ipc .. " launcher toggle"
+local controlCenter = ipc .. " controlCenter toggle"
 
 --------------------
 ---- AUTOSTART ----
@@ -34,7 +36,7 @@ local menuCommand = "dms ipc call spotlight toggle"
 --
  hl.on("hyprland.start", function () 
    hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-   hl.exec_cmd("systemctl --user start hyprland-session.target")
+   hl.exec_cmd("qs -c noctalia-shell")
  end)
 
 
@@ -94,7 +96,7 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 20,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -111,7 +113,7 @@ hl.config({
         blur = {
             enabled   = true,
             size      = 3,
-            passes    = 1,
+            passes    = 2,
             vibrancy  = 0.1696,
         },
     },
@@ -248,6 +250,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockCommand))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(menuCommand))
+hl.bind(mainMod .. " + Comma", hl.dsp.exec_cmd(controlCenter))
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd(lockCommand), { locked = true })
 
 -- Move focus with mainMod + arrow keys
@@ -331,6 +334,14 @@ hl.window_rule({
 --     no_anim = true,
 -- })
 -- overlayLayerRule:set_enabled(false)
+
+hl.layer_rule({
+    name  = "noctalia-blur",
+    match = { namespace = "^noctalia-background-.*$" },
+    blur  = true,
+    blur_popups = true,
+    ignore_alpha = 0.5,
+})
 
 -- Hyprland-run windowrule
 hl.window_rule({
