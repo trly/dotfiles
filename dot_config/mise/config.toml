@@ -2,4 +2,8 @@
 idiomatic_version_file_enable_tools = ["ruby"]
 
 [tools]
+go = "1.26.4"
 node = "lts"
+pipx = "1.14.0"
+pnpm = "11.5.2"
+python = "3.14.5"
