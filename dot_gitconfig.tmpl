@@ -2,7 +2,7 @@
 	name = Travis Lyons
   email = {{ .email.primary }}
 {{- if eq .profile "work"}}
-  signingkey = {{ onepasswordRead "op://Employee/ibtmymhhjxy5ofqryhgw2x7yvi" }}
+  signingkey = {{ onepasswordRead "op://Employee/ibtmymhhjxy5ofqryhgw2x7yvi/public key" }}
 {{- end }}
 {{- if eq .profile "personal"}}
   signingkey = {{ onepasswordRead "op://Private/SSH Key/public key" }}
