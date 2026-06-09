@@ -71,6 +71,10 @@ export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 
 {{- if eq .profile "work"}}
 #### BEGIN WORK PROFILE ####
+if commmand -v zellij &> /dev/null; then
+  alias sg-dev=zellij --new-session-with-layout ~/.config/zellij/layouts/sourcegraph.kdl -s sg-dev
+fi
+
 PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
 export AMP_API_KEY={{ onepasswordRead "op://Employee/Amp API Key/credential" }}
 export GITHUB_TOKEN={{ onepasswordRead "op://Employee/tic2vdlxonqobta22kzv6c4f24/credential" }}
