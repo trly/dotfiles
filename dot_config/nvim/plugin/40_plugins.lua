@@ -27,7 +27,7 @@ now(function()
   vim.cmd('colorscheme catppuccin-nvim')
 end)
 
-later(function()
+now_if_args(function()
   add({
     source = 'nvim-neo-tree/neo-tree.nvim',
     checkout = 'v3.x',
@@ -35,6 +35,11 @@ later(function()
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     }
+  })
+  require('neo-tree').setup({
+    filesystem = {
+      hijack_netrw_behavior = "open_current",
+    },
   })
 end)
 
