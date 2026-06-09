@@ -72,7 +72,7 @@ export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 {{- if eq .profile "work"}}
 #### BEGIN WORK PROFILE ####
 if commmand -v zellij &> /dev/null; then
-  alias sg-dev=zellij --new-session-with-layout ~/.config/zellij/layouts/sourcegraph.kdl -s sg-dev
+  alias sg-dev="zellij --new-session-with-layout ~/.config/zellij/layouts/sourcegraph.kdl -s sg-dev"
 fi
 
 PROG=sg source /Users/trly/.sourcegraph/sg.zsh_autocomplete
