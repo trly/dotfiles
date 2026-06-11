@@ -24,6 +24,17 @@ zstyle ':antidote:bundle' file $ZSH/zsh_plugins.txt
 zstyle ':antidote:static' file $ZSH/zsh_plugins.zsh
 
 source $ZSH/antidote/antidote.zsh
+
+# Global autocompletion paths — add directories to fpath if they exist.
+# ez-compinit (loaded via antidote) calls compinit automatically.
+typeset -a _completion_paths=(
+  "$HOME/.docker/completions"
+)
+for _cp in "${_completion_paths[@]}"; do
+  [[ -d "$_cp" ]] && fpath=("$_cp" $fpath)
+done
+unset _completion_paths _cp
+
 antidote load
 
 if command -v zellij &> /dev/null; then
