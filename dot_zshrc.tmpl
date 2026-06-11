@@ -37,6 +37,10 @@ unset _completion_paths _cp
 
 antidote load
 
+if command -v ngrok &> /dev/null; then
+  eval "$(ngrok completion)"
+fi
+
 if command -v zellij &> /dev/null; then
   if [[ -z "$ZELLIJ" ]]; then
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
