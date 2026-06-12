@@ -76,7 +76,8 @@ fi
 
 {{- if eq .profile "personal"}}
 #### BEGIN PERSONAL PROFILE ####
-export AMP_API_KEY={{ onepasswordRead "op://Private/Amp API Key/credential" }}
+export AMP_API_KEY={{ onepasswordRead "op://Private/csgruxcj2qnkmjmtnb2le77tjy/credential" }}
+export GH_TOKEN={{ onepasswordRead "op://Private/4tybjcnktzrbi3h64ilnglizse/credential" }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 {{- if eq .chezmoi.osRelease.id "arch"}}
 export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
