@@ -12,6 +12,24 @@ email = "{{ .email.primary }}"
 email = "{{ .email.secondary }}"
 {{- end }}
 
+[signing]
+behavior = "own"
+backend = "ssh"
+{{- if eq .profile "work"}}
+key = "{{ onepasswordRead "op://Employee/ibtmymhhjxy5ofqryhgw2x7yvi/public key" }}"
+{{- end }}
+{{- if eq .profile "personal"}}
+key = "{{ onepasswordRead "op://Private/SSH Key/public key" }}"
+{{- end }}
+
+[signing.backends.ssh]
+allowed-signers = "~/.ssh/allowed_signers"
+{{- if eq .chezmoi.os "darwin" }}
+program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- else }}
+program = "/opt/1Password/op-ssh-sign"
+{{- end }}
+
 [ui]
 pager = "delta"
 default-command = "log"
