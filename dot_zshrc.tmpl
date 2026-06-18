@@ -82,6 +82,7 @@ export GH_TOKEN={{ onepasswordRead "op://Private/4tybjcnktzrbi3h64ilnglizse/cred
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 {{- if eq .chezmoi.osRelease.id "arch"}}
 export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+alias Syu="sudo pacman -Syu"
 {{- end }}
 #### END PERSONAL PROFILE ####
 {{- end }}
