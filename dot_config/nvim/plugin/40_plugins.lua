@@ -18,7 +18,11 @@ local treesitter_highlight_filetypes = {
 now(function()
   add({ source = 'catppuccin/nvim', name = 'catppuccin' })
   require('catppuccin').setup({
-    flavour = 'frappe',
+    flavour = 'auto',
+    background = {
+      dark = 'frappe',
+      light = 'latte',
+    },
     term_colors = true,
     integrations = {
       mini = { enabled = true },
