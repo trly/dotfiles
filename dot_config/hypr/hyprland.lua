@@ -34,9 +34,14 @@ local controlCenter = ipc .. " controlCenter toggle"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 --
- hl.on("hyprland.start", function () 
-   hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-   hl.exec_cmd("qs -c noctalia-shell")
+ hl.on("hyprland.start", function ()
+    hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+    hl.exec_cmd("systemctl --user start hyprland-session.target")
+    hl.exec_cmd("qs -c noctalia-shell")
+ end)
+
+ hl.on("hyprland.shutdown", function ()
+    os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
  end)
 
 
