@@ -19,5 +19,10 @@ dot_Brewfile
 dot_config/windows_terminal
 {{- end }}
 
+{{ if ne .chezmoi.os "linux" -}}
+dot_config/hypr
+dot_config/systemd
+{{- end }}
+
 # .oh-my-zsh
 .oh-my-zsh/cache
