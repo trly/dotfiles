@@ -1,4 +1,22 @@
-local colors = require('themes.catppuccin-frappe')
+local function get_system_theme()
+    local handle = io.popen('gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null')
+    if handle then
+        local result = handle:read('*a')
+        handle:close()
+        result = result:gsub('^%s+', ''):gsub('%s+$', '')
+        if result == "'prefer-dark'" then
+            return 'dark'
+        end
+    end
+    return 'light'
+end
+
+local colors
+if get_system_theme() == 'dark' then
+    colors = require('themes.catppuccin-frappe')
+else
+    colors = require('themes.catppuccin-latte')
+end
 
 ------------------
 ---- MONITORS ----
