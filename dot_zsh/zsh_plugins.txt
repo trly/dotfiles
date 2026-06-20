@@ -10,7 +10,6 @@ ohmyzsh/ohmyzsh path:plugins/podman
 ohmyzsh/ohmyzsh path:plugins/pre-commit
 ohmyzsh/ohmyzsh path:plugins/starship
 ohmyzsh/ohmyzsh path:plugins/ssh
-ohmyzsh/ohmyzsh path:plugins/tailscale
 ohmyzsh/ohmyzsh path:plugins/zoxide
 sunlei/zsh-ssh
 wintermi/zsh-mise
