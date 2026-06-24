@@ -77,6 +77,10 @@ if command -v rustup &> /dev/null; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if command -v jj &> /dev/null; then
+  alias jjr="jj git fetch && jj rebase -o main@origin"
+fi
+
 {{- if eq .profile "personal"}}
 #### BEGIN PERSONAL PROFILE ####
 export AMP_API_KEY={{ onepasswordRead "op://Private/csgruxcj2qnkmjmtnb2le77tjy/credential" }}
