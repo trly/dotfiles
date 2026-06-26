@@ -32,11 +32,8 @@ program = "/opt/1Password/op-ssh-sign"
 
 [ui]
 pager = "delta"
+diff-formatter = ":git"
 default-command = "log"
-
-[ui.diff]
-format = "git"
-editor = "nvim"
 
 [aliases]
 push-with-checks = ["util", "exec", "--", "bash", "-c", """
