@@ -8,6 +8,7 @@
 - Tests should serve as documentation and specification of behavior
 - Test through the public API exclusively - internals should be invisible to tests
 - if a language supports immutability, always make a variable constant unless it can't be
+- when available, prefer sourcegraph MCP tools for remote code exploration
 
 ### Anti-Patterns
 
