@@ -1,17 +1,20 @@
 -- plugin configuration
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
-local treesitter_highlight_filetypes = { 
-	'go',
-	'groovy',
-	'ini',
-	'java',
-	'json',
-	'kotlin', 
-	'lua',
-	'markdown', 
-	'toml', 
-	'yaml' 
+local treesitter_highlight_filetypes = {
+  'go',
+  'groovy',
+  'ini',
+  'java',
+  'javascript',
+  'json',
+  'kotlin',
+  'lua',
+  'markdown',
+  'python',
+  'toml',
+  'typescript',
+  'yaml',
 }
 
 -- colorscheme
@@ -29,22 +32,6 @@ now(function()
     },
   })
   vim.cmd('colorscheme catppuccin-nvim')
-end)
-
-now_if_args(function()
-  add({
-    source = 'nvim-neo-tree/neo-tree.nvim',
-    checkout = 'v3.x',
-    depends = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    }
-  })
-  require('neo-tree').setup({
-    filesystem = {
-      hijack_netrw_behavior = "open_current",
-    },
-  })
 end)
 
 now(function()
@@ -81,8 +68,25 @@ now_if_args(function()
   require('mason').setup()
 
   add('neovim/nvim-lspconfig')
-  vim.lsp.enable('jdtls')
-  vim.lsp.enable('kotlin_language_server')
+
+  add({
+    source = 'mason-org/mason-lspconfig.nvim',
+    depends = {
+      'mason-org/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
+  })
+  require('mason-lspconfig').setup({
+    ensure_installed = {
+      'gopls',
+      'jdtls',
+      'kotlin_language_server',
+      'lua_ls',
+      'pyright',
+      'ts_ls',
+    },
+    automatic_enable = true,
+  })
 end)
 
 now(function()

@@ -17,6 +17,7 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 -- Add an entry if you create a new group.
 _G.Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>a', desc = '+AI' },
+  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>c', desc = '+Code' },
   { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
@@ -51,7 +52,6 @@ nmap_leader('gd', '<Cmd>lua MiniDiff.toggle_overlay()<CR>',                     
 -- e is for 'Explore/Edit'
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
 nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer in directory of current file')
-nmap_leader('et', '<Cmd>Neotree toggle<CR>', 'Explorer tree (Neo-tree)')
 
 -- a is for 'AI'
 nmap_leader('aa', '<Cmd>CodeCompanionActions<CR>', 'Actions')
@@ -59,11 +59,16 @@ nmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
 xmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
 nmap_leader('ai', '<Cmd>CodeCompanion<CR>', 'Inline')
 
+-- b is for 'Buffer'
+nmap_leader('bd', '<Cmd>lua MiniBufremove.delete()<CR>', 'Delete buffer')
+nmap_leader('bD', '<Cmd>lua MiniBufremove.delete(0, true)<CR>', 'Delete buffer!')
+
 -- c is for 'Code'
 nmap_leader('cd', '<Cmd>Trouble diagnostics toggle<CR>', 'Diagnostics')
 nmap_leader('cD', '<Cmd>Trouble diagnostics toggle filter.buf=0<CR>', 'Buffer diagnostics')
 nmap_leader('cf', '<Cmd>lua require("conform").format()<CR>', 'Format buffer')
 nmap_leader('cs', '<Cmd>Trouble symbols toggle<CR>', 'Symbols')
+nmap_leader('ct', '<Cmd>lua MiniTrailspace.trim()<CR>', 'Trim trailing whitespace')
 nmap_leader('cq', '<Cmd>Trouble qflist toggle<CR>', 'Quickfix list')
 
 -- l is for 'LSP/Language'
