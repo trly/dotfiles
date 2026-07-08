@@ -2,5 +2,5 @@
 {{ if eq .profile "personal" }}
 {{ .email.primary }} namespaces="git" {{ onepasswordRead "op://Private/SSH Key/public key" }}
 {{- else if eq .profile "work" }}
-{{ .email.secondary }} namespaces="git" {{ onepasswordRead "op://Employee/GitHub SSH Key/public key" }}
+{{ .email.secondary }} namespaces="git" {{ onepasswordRead "op://Employee/ibtmymhhjxy5ofqryhgw2x7yvi/public key" }}
 {{- end }}
