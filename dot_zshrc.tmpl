@@ -87,7 +87,7 @@ export AMP_API_KEY={{ onepasswordRead "op://Private/csgruxcj2qnkmjmtnb2le77tjy/c
 export GH_TOKEN={{ onepasswordRead "op://Private/4tybjcnktzrbi3h64ilnglizse/credential" }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 export UPCLOUD_TOKEN={{ onepasswordRead "op://Private/a4ea64hf7r54abcgwlvz5sbwg4/credential" }}
-export ICLOUD_APP_PASSWORD={{ openpasswordRead "op://Private/hm746xqwnqdzgunk26ng5t56l4/password" }}
+export ICLOUD_APP_PASSWORD={{ onepasswordRead "op://Private/hm746xqwnqdzgunk26ng5t56l4/password" }}
 {{- if eq .chezmoi.osRelease.id "arch"}}
 export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 alias Syu="sudo pacman -Syu"
