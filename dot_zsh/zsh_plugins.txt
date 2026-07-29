@@ -17,3 +17,4 @@ zpm-zsh/clipboard
 zsh-users/zsh-completions
 Aloxaf/fzf-tab
 zdharma-continuum/fast-syntax-highlighting
+Giammarco-Ferranti/deja
