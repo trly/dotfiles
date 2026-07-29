@@ -44,20 +44,6 @@ if command -v ngrok &> /dev/null; then
   eval "$(ngrok completion)"
 fi
 
-if command -v zellij &> /dev/null; then
-  if [[ -z "$ZELLIJ" ]]; then
-    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
-      zellij attach -c {{ .chezmoi.hostname }}
-    else
-      zellij
-    fi
-
-    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
-     exit
-    fi
-  fi
-fi
-
 if command -v nvim &> /dev/null; then
   export EDITOR="nvim"
   export VISUAL="nvim"
