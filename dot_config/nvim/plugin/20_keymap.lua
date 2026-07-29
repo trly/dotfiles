@@ -16,12 +16,9 @@ nmap(']p', '<Cmd>exe "put "  . v:register<CR>', 'Paste Below')
 -- This is used to provide 'mini.clue' with extra clues.
 -- Add an entry if you create a new group.
 _G.Config.leader_group_clues = {
-  { mode = 'n', keys = '<Leader>a', desc = '+AI' },
-  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>c', desc = '+Code' },
-  { mode = 'n', keys = '<Leader>e', desc = '+Explore/Edit' },
+  { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
   { mode = 'n', keys = '<Leader>f', desc = '+Find' },
-  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP/Language' },
   { mode = 'n', keys = '<Leader>q', desc = '+Quit' },
 }
@@ -34,41 +31,19 @@ _G.Config.leader_group_clues = {
 local nmap_leader = function(suffix, rhs, desc)
   vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
 end
-local xmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set('x', '<Leader>' .. suffix, rhs, { desc = desc })
-end
 
 -- f is for 'Find'.
-nmap_leader('ff', '<Cmd>Pick files<CR>',                        'Files')
-nmap_leader('fg', '<Cmd>Pick grep_live<CR>',                    'Grep live')
-nmap_leader('fG', '<Cmd>Pick grep pattern="<cword>"<CR>',       'Grep current word')
-nmap_leader('fh', '<Cmd>Pick help<CR>',                         'Help tags')
-nmap_leader('fr', '<Cmd>GrugFar<CR>', 				'Find/Replace')
+nmap_leader('fr', '<Cmd>GrugFar<CR>', 'Find/Replace')
 
--- g is for 'Git'
-nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',                       'Show at cursor')
-nmap_leader('gd', '<Cmd>lua MiniDiff.toggle_overlay()<CR>',                      'Diff overlay toggle')
-
--- e is for 'Explore/Edit'
+-- e is for 'Explore'.
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
-nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer in directory of current file')
-
--- a is for 'AI'
-nmap_leader('aa', '<Cmd>CodeCompanionActions<CR>', 'Actions')
-nmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
-xmap_leader('ac', '<Cmd>CodeCompanionChat Toggle<CR>', 'Chat toggle')
-nmap_leader('ai', '<Cmd>CodeCompanion<CR>', 'Inline')
-
--- b is for 'Buffer'
-nmap_leader('bd', '<Cmd>lua MiniBufremove.delete()<CR>', 'Delete buffer')
-nmap_leader('bD', '<Cmd>lua MiniBufremove.delete(0, true)<CR>', 'Delete buffer!')
+nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer at current file')
 
 -- c is for 'Code'
 nmap_leader('cd', '<Cmd>Trouble diagnostics toggle<CR>', 'Diagnostics')
 nmap_leader('cD', '<Cmd>Trouble diagnostics toggle filter.buf=0<CR>', 'Buffer diagnostics')
 nmap_leader('cf', '<Cmd>lua require("conform").format()<CR>', 'Format buffer')
 nmap_leader('cs', '<Cmd>Trouble symbols toggle<CR>', 'Symbols')
-nmap_leader('ct', '<Cmd>lua MiniTrailspace.trim()<CR>', 'Trim trailing whitespace')
 nmap_leader('cq', '<Cmd>Trouble qflist toggle<CR>', 'Quickfix list')
 
 -- l is for 'LSP/Language'

@@ -40,13 +40,6 @@ now(function()
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
   })
 
-  add({
-    source = 'nvim-treesitter/nvim-treesitter-textobjects',
-    -- Use `main` branch since `master` branch is frozen, yet still default
-    -- It is needed for compatibility with 'nvim-treesitter' `main` branch
-    checkout = 'main',
-  })
-
   -- Start Tree-sitter explicitly for filetypes that should always use it.
   vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('treesitter-highlight', { clear = true }),
@@ -89,41 +82,9 @@ now_if_args(function()
   })
 end)
 
-now(function()
-  add({ source = 'sourcegraph/amp.nvim' })
-  require('amp').setup({ auto_start = true, log_level = 'info' })
-end)
-
-later(function()
-  add({
-    source = 'olimorris/codecompanion.nvim',
-    depends = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-  })
-  require('codecompanion').setup({
-	  interactions = {
-		  chat = {
-			  adapter = {
-				  name = "claude_code",
-				  model = "opus",
-			  }
-		  }
-	  }
-  })
-end)
-
 later(function()
   add({ source = 'folke/trouble.nvim', depends = { 'nvim-mini/mini.icons' } })
   require('trouble').setup()
-end)
-
-now_if_args(function()
-  add({
-    source = 'iamcco/markdown-preview.nvim',
-    hooks = { post_checkout = function() vim.fn['mkdp#util#install']() end },
-  })
 end)
 
 later(function()
@@ -134,8 +95,8 @@ later(function()
     source = 'MeanderingProgrammer/render-markdown.nvim',
     depends = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-mini/mini.icons'
-    }
+      'nvim-mini/mini.icons',
+    },
   })
   require('render-markdown').setup()
 
