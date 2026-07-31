@@ -105,6 +105,9 @@
   path = ~/.gitconfig-personal
 {{- end }}
 
+[includeIf "hasconfig:remote.*.url:git@github.com/trly/pkgbuild.git"]
+  path = ~/.gitconfig-pkgbuild
+
 [push]
   autoSetupRemote = true
   followTags = true
