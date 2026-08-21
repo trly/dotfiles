@@ -37,8 +37,6 @@ for _cp in "${_completion_paths[@]}"; do
 done
 unset _completion_paths _cp
 
-bgnotify_threshold=120
-
 antidote load
 
 if command -v ngrok &> /dev/null; then
