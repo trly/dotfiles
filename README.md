@@ -49,4 +49,4 @@ Adjacent dependencies that this repository relies on:
 | [1Password](https://1password.com/) CLI (`op`) | Provides secrets via `onepasswordRead` at apply time | `dot_zshrc.tmpl` |
 | [antidote](https://github.com/mattmc3/antidote) | External git checkout; loads zsh plugins | `.chezmoiexternal.toml`, `dot_zsh/zsh_plugins.txt` |
 | [trly/skills](https://github.com/trly/skills) | External git checkout into `~/.local/agent_skills/trly` | `.chezmoiexternal.toml` |
-| [mise](https://mise.jdx.dev/) | Installs declared language runtimes (Go, Node, Python, pnpm, pipx) | `dot_config/mise/config.toml` |
+| [mise](https://mise.jdx.dev/) | Installs declared language runtimes (Go, Node, pnpm); Python via `uv` | `dot_config/mise/config.toml` |
