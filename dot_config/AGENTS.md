@@ -17,6 +17,11 @@
 
 ## Development Guidelines
 
+### Frameworks vs Custom Code
+
+- ALWAYS research existing, standards compliant, widely-used, external libraries before creating custom code for an implementation. Prefer boring, proven defaults instead of novel creation
+- ALWAYS ask the developer to review library choices before finalizing a design
+
 ### Rule of Modularity
 
 - Break complex systems into manageable components
