@@ -2,8 +2,10 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
 local treesitter_highlight_filetypes = {
+  'css',
   'go',
   'groovy',
+  'html',
   'ini',
   'java',
   'javascript',
@@ -12,10 +14,12 @@ local treesitter_highlight_filetypes = {
   'lua',
   'markdown',
   'python',
+  'svelte',
   'toml',
   'typescript',
   'yaml',
 }
+local treesitter_install_parsers = { 'svelte', 'html', 'css', 'javascript' }
 
 -- colorscheme
 now(function()
@@ -40,6 +44,10 @@ now(function()
     checkout = 'main',
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
   })
+
+  pcall(function()
+    require('nvim-treesitter').install(treesitter_install_parsers)
+  end)
 
   -- Start Tree-sitter explicitly for filetypes that should always use it.
   vim.api.nvim_create_autocmd('FileType', {
@@ -77,9 +85,20 @@ now_if_args(function()
       'kotlin_lsp',
       'lua_ls',
       'basedpyright',
+      'svelte',
       'tsc',
     },
     automatic_enable = true,
+  })
+
+  vim.api.nvim_create_autocmd('BufWritePost', {
+    group = vim.api.nvim_create_augroup('svelte-lsp-sync-ts-js', { clear = true }),
+    pattern = { '*.js', '*.ts' },
+    callback = function(args)
+      for _, client in ipairs(vim.lsp.get_clients({ name = 'svelte' })) do
+        client:notify('$/onDidChangeTsOrJsFile', { uri = vim.uri_from_bufnr(args.buf) })
+      end
+    end,
   })
 end)
 
