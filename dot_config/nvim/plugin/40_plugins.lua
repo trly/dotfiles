@@ -76,7 +76,7 @@ now_if_args(function()
       'jdtls',
       'kotlin_language_server',
       'lua_ls',
-      'pyright',
+      'basedpyright',
       'ts_ls',
     },
     automatic_enable = true,
@@ -105,6 +105,10 @@ later(function()
   require('conform').setup({
     default_format_opts = {
       lsp_format = 'fallback',
+    },
+    format_on_save = {
+      lsp_format = 'fallback',
+      timeout_ms = 500,
     },
   })
 end)
