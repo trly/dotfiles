@@ -74,10 +74,10 @@ now_if_args(function()
     ensure_installed = {
       'gopls',
       'jdtls',
-      'kotlin_language_server',
+      'kotlin_lsp',
       'lua_ls',
       'basedpyright',
-      'ts_ls',
+      'tsc',
     },
     automatic_enable = true,
   })
