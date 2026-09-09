@@ -33,6 +33,8 @@ local nmap_leader = function(suffix, rhs, desc)
 end
 
 -- f is for 'Find'.
+nmap_leader('ff', '<Cmd>lua MiniPick.builtin.files()<CR>', 'Find files')
+nmap_leader('fg', '<Cmd>lua MiniPick.builtin.grep_live()<CR>', 'Grep live')
 nmap_leader('fr', '<Cmd>GrugFar<CR>', 'Find/Replace')
 
 -- e is for 'Explore'.

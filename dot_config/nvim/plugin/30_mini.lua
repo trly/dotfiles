@@ -9,6 +9,7 @@ now(function() require('mini.notify').setup() end)
 now(function() require('mini.tabline').setup() end)
 now(function() require('mini.statusline').setup() end)
 now(function() require('mini.files').setup() end)
+now(function() require('mini.pick').setup() end)
 
 later(function()
   local hipatterns = require('mini.hipatterns')
