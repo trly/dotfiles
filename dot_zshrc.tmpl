@@ -1,5 +1,8 @@
 #### BEGIN USER CONFIGURATION ####
 export ZSH="$HOME/.zsh"
+# omz plugins loaded via antidote need this themselves (normally set by oh-my-zsh)
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+mkdir -p "$ZSH_CACHE_DIR/completions"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export HISTFILE=$ZSH/zsh_history
 export HISTSIZE=100000
