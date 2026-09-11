@@ -13,13 +13,14 @@ local treesitter_highlight_filetypes = {
   'kotlin',
   'lua',
   'markdown',
+  'proto',
   'python',
   'svelte',
   'toml',
   'typescript',
   'yaml',
 }
-local treesitter_install_parsers = { 'svelte', 'html', 'css', 'javascript' }
+local treesitter_install_parsers = { 'svelte', 'html', 'css', 'javascript', 'proto' }
 
 now(function()
   add({
@@ -68,6 +69,7 @@ now_if_args(function()
       'kotlin_lsp',
       'lua_ls',
       'basedpyright',
+      'protols',
       'svelte',
       'tsc',
     },
