@@ -5,4 +5,3 @@ local bases = {
 }
 require('mini.hues').setup(bases[vim.o.background] or bases.dark)
 vim.g.colors_name = 'minihues'
-vim.defer_fn(function() print("DBG-FILE colors_name:", vim.g.colors_name) end, 300)

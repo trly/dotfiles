@@ -12,6 +12,11 @@ now(function() require('mini.statusline').setup() end)
 now(function() require('mini.files').setup() end)
 now(function() require('mini.pick').setup() end)
 
+later(function() require('mini.ai').setup() end)
+later(function() require('mini.bracketed').setup() end)
+later(function() require('mini.operators').setup() end)
+later(function() require('mini.surround').setup() end)
+
 later(function()
   local hipatterns = require('mini.hipatterns')
   hipatterns.setup({
