@@ -21,23 +21,6 @@ local treesitter_highlight_filetypes = {
 }
 local treesitter_install_parsers = { 'svelte', 'html', 'css', 'javascript' }
 
--- colorscheme
-now(function()
-  add({ source = 'catppuccin/nvim', name = 'catppuccin' })
-  require('catppuccin').setup({
-    flavour = 'auto',
-    background = {
-      dark = 'frappe',
-      light = 'latte',
-    },
-    term_colors = true,
-    integrations = {
-      mini = { enabled = true },
-    },
-  })
-  vim.cmd('colorscheme catppuccin-nvim')
-end)
-
 now(function()
   add({
     source = 'nvim-treesitter/nvim-treesitter',

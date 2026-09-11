@@ -40,5 +40,6 @@ Core loading functions:
 ## References
 
 - [mini.nvim documentation](https://github.com/nvim-mini/mini.nvim)
+- [mini.nvim modules](https://nvim-mini.org/mini.nvim/#modules)
 - [MiniMax reference config](https://nvim-mini.org/MiniMax/)
 - [mini.deps help](https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-deps.md)

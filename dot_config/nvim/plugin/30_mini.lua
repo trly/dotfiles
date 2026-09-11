@@ -1,6 +1,7 @@
 -- mini.nvim module config
 local now, later = MiniDeps.now, MiniDeps.later
 
+now(function() vim.cmd('colorscheme minihues') end)
 now(function()
   require('mini.icons').setup()
   MiniIcons.mock_nvim_web_devicons()
