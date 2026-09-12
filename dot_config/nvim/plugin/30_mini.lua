@@ -12,7 +12,19 @@ now(function() require('mini.statusline').setup() end)
 now(function() require('mini.files').setup() end)
 now(function() require('mini.pick').setup() end)
 
-later(function() require('mini.completion').setup() end)
+later(function()
+  require('mini.completion').setup()
+
+  -- Use <Tab>/<S-Tab> to navigate the completion popup; fall back to the
+  -- key's normal action when it is not visible. See `:h mini.completion-examples`.
+  local map_tab = function(key, fallback_action)
+    vim.keymap.set('i', key, function()
+      return vim.fn.pumvisible() == 1 and fallback_action or key
+    end, { expr = true, replace_keycodes = false })
+  end
+  map_tab('<Tab>', '<C-n>')
+  map_tab('<S-Tab>', '<C-p>')
+end)
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.operators').setup() end)
