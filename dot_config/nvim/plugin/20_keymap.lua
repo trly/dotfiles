@@ -40,6 +40,7 @@ nmap_leader('fr', '<Cmd>GrugFar<CR>', 'Find/Replace')
 -- e is for 'Explore'.
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Explorer in current working directory')
 nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<CR>', 'Explorer at current file')
+nmap_leader('et', '<Cmd>NvimTreeToggle<CR>', 'Explorer tree toggle')
 
 -- c is for 'Code'
 nmap_leader('cd', '<Cmd>Trouble diagnostics toggle<CR>', 'Diagnostics')

@@ -105,6 +105,9 @@ later(function()
   })
   require('render-markdown').setup()
 
+  add({ source = 'nvim-tree/nvim-tree.lua', depends = { 'nvim-mini/mini.icons' } })
+  require('nvim-tree').setup()
+
   add('stevearc/conform.nvim')
   require('conform').setup({
     default_format_opts = {
