@@ -5,10 +5,9 @@
 ### Patterns
 
 - If connected to an IDE, review diagnostic messages and correct any critical issues identified once feature implementation is complete
-- Tests should serve as documentation and specification of behavior
-- Test through the public API exclusively - internals should be invisible to tests
+- Test through the public API exclusively, internals should be invisible to tests
 - if a language supports immutability, always make a variable constant unless it can't be
-- when available, prefer sourcegraph MCP tools for remote code exploration
+- when available, prefer Sourcegraph MCP tools for code exploration
 
 ### Anti-Patterns
 
