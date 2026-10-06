@@ -25,18 +25,20 @@ type Tier = {
 	key: string;
 	description: string;
 	model: ModelRef;
+	/** Ordered alternatives; must not be more expensive than the primary model. */
+	fallbacks?: ModelRef[];
 	/** Optional thinking level to set when this tier is selected. */
 	thinkingLevel?: "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
 };
 
 const ROUTER_CONFIG = {
-	/** Model used for intent classification. Keep it cheap and fast. */
-	classifier: { provider: "opencode-go", id: "glm-5.3-flash" } as ModelRef,
+	/** Sole initial-prompt classifier; OpenCode Go Luna defaults to thinking off for direct complete() calls. */
+	classifier: { provider: "opencode-go", id: "gpt-6-luna" } as ModelRef,
 
 	/**
 	 * Routing tiers, cheapest first. The classifier picks one key.
-	 * Tier choices informed by GSO (software-optimization) and Aider polyglot
-	 * benchmark findings; see the conversation that configured this.
+	 * Each tier has an explicit, non-escalating fallback chain; don't infer
+	 * fallback order from this array's order.
 	 */
 	tiers: [
 		{
@@ -44,15 +46,17 @@ const ROUTER_CONFIG = {
 			description:
 				"Quick questions, factual answers, tiny single-line edits, formatting, " +
 				"simple lookups, typos, renames, comments, anything with no real complexity.",
-			model: { provider: "opencode-go", id: "glm-5.3-flash" },
+			model: { provider: "opencode-go", id: "gpt-6-luna" },
+			fallbacks: [{ provider: "openai-codex", id: "gpt-6-luna" }],
+			thinkingLevel: "low",
 		},
 		{
 			key: "normal",
 			description:
 				"Everyday coding: implementing features, multi-step edits, refactors of a few files, " +
 				"routine debugging, running tests, normal explanation work.",
-			model: { provider: "opencode-go", id: "glm-5.3-flash" },
-			thinkingLevel: "max",
+			model: { provider: "opencode-go", id: "gpt-6-luna" },
+			fallbacks: [{ provider: "openai-codex", id: "gpt-6-luna" }],
 		},
 		{
 			key: "heavy",
@@ -60,7 +64,11 @@ const ROUTER_CONFIG = {
 				"Hard high-level work: architecture and design, large multi-file refactors, deep analysis, " +
 				"complex planning, gnarly debugging in high-level code, subtle concurrency/perf issues " +
 				"that do NOT primarily involve low-level languages.",
-			model: { provider: "openai-codex", id: "gpt-5.6-terra" },
+			model: { provider: "openai-codex", id: "gpt-6.1-sol" },
+			fallbacks: [
+				{ provider: "opencode-go", id: "gpt-6-luna" },
+				{ provider: "openai-codex", id: "gpt-6-luna" },
+			],
 			thinkingLevel: "xhigh",
 		},
 		{
@@ -71,6 +79,11 @@ const ROUTER_CONFIG = {
 				"systems. Prefer systems over heavy whenever the core changes touch native or " +
 				"low-level code, even if the surrounding repo is mostly Python.",
 			model: { provider: "openai-codex", id: "gpt-6-astra" },
+			fallbacks: [
+				{ provider: "openai-codex", id: "gpt-6.1-sol" },
+				{ provider: "opencode-go", id: "gpt-6-luna" },
+				{ provider: "openai-codex", id: "gpt-6-luna" },
+			],
 			thinkingLevel: "xhigh",
 		},
 	] as Tier[],
@@ -87,7 +100,7 @@ const CONTINUATION_RE =
 const STATUS_ID = "model-router";
 
 /** Providers billed through a subscription rather than per-token ("(sub)" in footer). */
-const SUBSCRIPTION_PROVIDERS = new Set(["kimi-coding", "opencode-go", "opencode"]);
+const SUBSCRIPTION_PROVIDERS = new Set(["kimi-coding", "opencode-go", "opencode", "openai-codex"]);
 
 const formatTokens = (count: number): string => {
 	if (count < 1000) return count.toString();
@@ -125,19 +138,18 @@ const findTier = (key: string): Tier | undefined =>
 
 const tierLabel = (tier: Tier): string => `${tier.model.provider}/${tier.model.id}`;
 
-const resolveTierModel = (
+const resolveTierModels = (
 	tier: Tier,
 	ctx: ExtensionContext,
-): { tier: Tier; model: ReturnType<ExtensionContext["modelRegistry"]["find"]> | undefined } => {
-	// Fall back through progressively cheaper tiers when auth is missing.
-	const ordered = [tier, ...ROUTER_CONFIG.tiers.slice().reverse().filter((t) => t.key !== tier.key)];
-	for (const candidate of ordered) {
-		const model = ctx.modelRegistry.find(candidate.model.provider, candidate.model.id);
+): NonNullable<ReturnType<ExtensionContext["modelRegistry"]["find"]>>[] => {
+	const models: NonNullable<ReturnType<ExtensionContext["modelRegistry"]["find"]>>[] = [];
+	for (const ref of [tier.model, ...(tier.fallbacks ?? [])]) {
+		const model = ctx.modelRegistry.find(ref.provider, ref.id);
 		if (model && ctx.modelRegistry.hasConfiguredAuth(model)) {
-			return { tier: candidate, model };
+			models.push(model);
 		}
 	}
-	return { tier, model: undefined };
+	return models;
 };
 
 const recentUserText = (
@@ -276,7 +288,10 @@ const classify = async (
 			JSON.stringify(response.diagnostics ?? null),
 		);
 
-		const matched = tierKeys.find((key) => new RegExp(`\\b${key}\\b`).test(text));
+		const matched =
+			response.stopReason === "stop" && !response.errorMessage
+				? tierKeys.find((key) => key === text.trim())
+				: undefined;
 		debugLog("classifier reply:", JSON.stringify(text.slice(0, 200)), "→", matched ?? DEFAULT_TIER_KEY);
 		return (matched ? findTier(matched) : findTier(DEFAULT_TIER_KEY)) as Tier;
 	} catch {
@@ -290,35 +305,49 @@ const applyTier = async (
 	tier: Tier,
 	ctx: ExtensionContext,
 	pi: ExtensionAPI,
-): Promise<boolean> => {
-	const { tier: effectiveTier, model } = resolveTierModel(tier, ctx);
-	if (!model) {
-		ctx.ui.notify(`model-router: no auth for ${tierLabel(tier)}`, "warning");
-		return false;
+): Promise<NonNullable<ReturnType<ExtensionContext["modelRegistry"]["find"]>> | undefined> => {
+	const models = resolveTierModels(tier, ctx);
+	if (models.length === 0) {
+		const tried = [tier.model, ...(tier.fallbacks ?? [])]
+			.map((model) => `${model.provider}/${model.id}`)
+			.join(", ");
+		ctx.ui.notify(`model-router: no configured auth for ${tried}`, "warning");
+		return undefined;
 	}
 
 	const current = ctx.model;
 	const currentKey = current ? `${current.provider}/${current.id}` : "";
-	const targetKey = tierLabel(effectiveTier);
-
-	if (currentKey !== targetKey) {
-		const success = await pi.setModel(model);
-		if (!success) {
-			ctx.ui.notify(`model-router: could not switch to ${targetKey}`, "warning");
-			return false;
+	let model: (typeof models)[number] | undefined;
+	for (const candidate of models) {
+		const candidateKey = `${candidate.provider}/${candidate.id}`;
+		if (currentKey !== candidateKey) {
+			try {
+				if (!(await pi.setModel(candidate))) {
+					debugLog("model switch rejected; trying configured fallback", candidateKey);
+					continue;
+				}
+			} catch {
+				debugLog("model switch failed; trying configured fallback", candidateKey);
+				continue;
+			}
 		}
+		model = candidate;
+		break;
 	}
 
-	if (effectiveTier.thinkingLevel && pi.getThinkingLevel() !== effectiveTier.thinkingLevel) {
-		pi.setThinkingLevel(effectiveTier.thinkingLevel);
+	if (!model) {
+		ctx.ui.notify(`model-router: all configured models failed for tier ${tier.key}`, "warning");
+		return undefined;
 	}
 
-	ctx.ui.setStatus(
-		STATUS_ID,
-		`router: ${effectiveTier.key} → ${effectiveTier.model.id}`,
-	);
-	routerStatusText = `${effectiveTier.key} → ${effectiveTier.model.id}`;
-	return true;
+	if (tier.thinkingLevel && pi.getThinkingLevel() !== tier.thinkingLevel) {
+		pi.setThinkingLevel(tier.thinkingLevel);
+	}
+
+	const routeText = `${tier.key} → ${model.provider}/${model.id}`;
+	ctx.ui.setStatus(STATUS_ID, `router: ${routeText}`);
+	routerStatusText = routeText;
+	return model;
 };
 
 /** Right-aligned footer text shown under the model indicator (custom footer). */
@@ -539,9 +568,15 @@ export default function (pi: ExtensionAPI) {
 		try {
 			const previousUserText = recentUserText(ctx, 2, 500, prompt).join("\n\n");
 			const tier = await classify(prompt, previousUserText, ctx);
-			debugLog("routed", JSON.stringify(prompt.slice(0, 80)), "→", tier.key, tierLabel(tier));
-			await applyTier(tier, ctx, pi);
-			lastTierKey = tier.key;
+			const model = await applyTier(tier, ctx, pi);
+			debugLog(
+				"routed",
+				JSON.stringify(prompt.slice(0, 80)),
+				"→",
+				tier.key,
+				model ? `${model.provider}/${model.id}` : "no usable fallback",
+			);
+			lastTierKey = model ? tier.key : undefined;
 		} finally {
 			busy = false;
 		}
@@ -575,10 +610,10 @@ export default function (pi: ExtensionAPI) {
 			}
 
 			// status (default)
-			const tierLines = ROUTER_CONFIG.tiers.map(
-				(tier) =>
-					`  ${tier.key.padEnd(8)} → ${tierLabel(tier)}${tier.thinkingLevel ? ` (thinking: ${tier.thinkingLevel})` : ""}`,
-			);
+			const tierLines = ROUTER_CONFIG.tiers.flatMap((tier) => [
+				`  ${tier.key.padEnd(8)} → ${tierLabel(tier)}${tier.thinkingLevel ? ` (thinking: ${tier.thinkingLevel})` : ""}`,
+				...(tier.fallbacks ?? []).map((model) => `  ${"".padEnd(8)} ↳ ${model.provider}/${model.id} (fallback)`),
+			]);
 			const currentModel = ctx.model;
 			const lines = [
 				`model-router: ${enabled ? "enabled" : "disabled"}`,

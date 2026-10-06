@@ -8,18 +8,18 @@ Before every agent turn, the incoming prompt is classified into a **routing tier
 
 ## Routing tiers
 
-| Tier | Model | Thinking | Used for |
-|------|-------|----------|----------|
-| `trivial` | `opencode-go/glm-5.3-flash` | — | Quick questions, one-line edits, lookups |
-| `normal` | `opencode-go/glm-5.3-flash` | `max` | Everyday coding: features, multi-step edits, routine debugging |
-| `heavy` | `openai-codex/gpt-5.6-terra` | `xhigh` | Architecture/design, large refactors, deep analysis, complex planning |
-| `systems` | `openai-codex/gpt-6-astra` | `xhigh` | Low-level work: C/C++/Rust/Cython/SIMD/FFI/native build systems |
+| Tier | Primary model | Fallback order | Thinking | Used for |
+|------|-------|----------|----------|----------|
+| `trivial` | `opencode-go/gpt-6-luna` | `openai-codex/gpt-6-luna` | `low` | Quick questions, one-line edits, lookups |
+| `normal` | `opencode-go/gpt-6-luna` | `openai-codex/gpt-6-luna` | default | Everyday coding: features, multi-step edits, routine debugging |
+| `heavy` | `openai-codex/gpt-6.1-sol` | `opencode-go/gpt-6-luna` → `openai-codex/gpt-6-luna` | `xhigh` | Architecture/design, large refactors, deep analysis, complex planning |
+| `systems` | `openai-codex/gpt-6-astra` | `openai-codex/gpt-6.1-sol` → `opencode-go/gpt-6-luna` → `openai-codex/gpt-6-luna` | `xhigh` | Low-level work: C/C++/Rust/Cython/SIMD/FFI/native build systems |
 
-If a tier's model has no configured auth, routing falls back down the ladder (systems → heavy → normal → trivial) instead of failing.
+Fallbacks are explicit, ordered, and never move up to a more expensive tier: Luna can switch provider to the other Luna, heavy work can drop to Luna, and systems work can drop to Sol or Luna. Pi tries each candidate when its catalog entry or configured auth is missing, and the router tries the next candidate if Pi rejects the model switch. If none work, it warns and leaves the active model unchanged. This handles catalog/auth/switch failures, not quota or request errors after a model has been selected.
 
 ## Behavior details
 
-- **Classifier**: `opencode-go/glm-5.3-flash` via a nested model call (~300–500 ms). Judges reasoning complexity, not reply length. Falls back to the `normal` tier on timeout (10 s) or error.
+- **Classifier**: only `opencode-go/gpt-6-luna`, via a nested model call with no reasoning enabled. Judges reasoning complexity, not reply length. Falls back to the `normal` tier on timeout (10 s) or error.
 - **Sticky continuations**: short prompts ("continue", "ok", "yes") reuse the previous tier with no classifier call.
 - **No mid-run switching**: steered/queued messages during a run are skipped to avoid fragmenting turns and invalidating prompt cache.
 - **Nested-call headers**: nested calls bypass pi's stream wrapper, so `x-opencode-session`/`x-opencode-client` headers are injected for opencode-hosted models.
@@ -35,7 +35,7 @@ If a tier's model has no configured auth, routing falls back down the ladder (sy
 Edit the `ROUTER_CONFIG` table at the top of `index.ts`, then `/reload`:
 
 - `classifier` — model used for intent classification
-- `tiers` — tier list: key, description (what the classifier matches on), model, optional `thinkingLevel`
+- `tiers` — tier list: key, description (what the classifier matches on), primary `model`, ordered cheaper/provider `fallbacks`, optional `thinkingLevel`
 - `timeoutMs` — classifier call timeout
 
 ## Debugging
