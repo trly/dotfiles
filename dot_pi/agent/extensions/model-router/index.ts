@@ -548,6 +548,10 @@ export default function (pi: ExtensionAPI) {
 
 	pi.on("before_agent_start", async (event, ctx) => {
 		if (!enabled || busy) return;
+		// Only route runs started by actual prompts; custom-message runs have no prompt.
+		// (Since pi 1.2.0, runs triggered via pi.sendMessage({ triggerTurn: true }) also
+		// fire this event, and BeforeAgentStartEvent is a union on messageType.)
+		if (event.messageType !== "user") return;
 		const prompt = event.prompt.trim();
 		if (prompt.length === 0) return;
 
@@ -560,10 +564,6 @@ export default function (pi: ExtensionAPI) {
 				return;
 			}
 		}
-
-		// Skip mid-run steering/follow-up prompts: switching models mid-run
-		// would fragment the turn and invalidate prompt cache.
-		if (!ctx.isIdle()) return;
 
 		busy = true;
 		try {
