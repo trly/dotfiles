@@ -57,6 +57,7 @@ const ROUTER_CONFIG = {
 				"routine debugging, running tests, normal explanation work.",
 			model: { provider: "opencode-go", id: "gpt-6-luna" },
 			fallbacks: [{ provider: "openai-codex", id: "gpt-6-luna" }],
+			thinkingLevel: "medium",
 		},
 		{
 			key: "heavy",
